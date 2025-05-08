@@ -6,11 +6,15 @@
   "type": "string",
   "oneOf": [
     {
+      "description": "Specifies that the consumer can keep the product, even when receiving a refund or store credit.",
+      "const": "KeepProduct"
+    },
+    {
       "description": "Specifies that product returns must be made at a kiosk.",
       "const": "ReturnAtKiosk"
     },
     {
-      "description": "Specifies that product returns must to be done by mail.",
+      "description": "Specifies that product returns must be done by mail.",
       "const": "ReturnByMail"
     },
     {

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:WearableSizeSystemEnumeration",
   "title": "WearableSizeSystemEnumeration",
-  "description": "Enumerates common size systems specific for wearable products",
+  "description": "Enumerates common size systems specific for wearable products.",
   "type": "object",
   "allOf": [
     {

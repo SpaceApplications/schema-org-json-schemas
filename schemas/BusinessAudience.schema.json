@@ -12,7 +12,7 @@
   ],
   "properties": {
     "numberOfEmployees": {
-      "description": "The number of employees in an organization e.g. business.",
+      "description": "The number of employees in an organization, e.g. business.",
       "$ref": "schema:QuantitativeValue"
     },
     "yearlyRevenue": {

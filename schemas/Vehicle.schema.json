@@ -114,7 +114,7 @@
       ]
     },
     "mileageFromOdometer": {
-      "description": "The total distance travelled by the particular vehicle since its initial production, as read from its odometer.\\n\\nTypical unit code(s): KMT for kilometers, SMI for statute miles",
+      "description": "The total distance travelled by the particular vehicle since its initial production, as read from its odometer.\\n\\nTypical unit code(s): KMT for kilometers, SMI for statute miles.",
       "$ref": "schema:QuantitativeValue"
     },
     "modelDate": {
@@ -127,19 +127,19 @@
       "anyOf": [{ "type": "number" }, { "type": "string" }]
     },
     "numberOfAxles": {
-      "description": "The number of axles.\\n\\nTypical unit code(s): C62",
+      "description": "The number of axles.\\n\\nTypical unit code(s): C62.",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "numberOfDoors": {
-      "description": "The number of doors.\\n\\nTypical unit code(s): C62",
+      "description": "The number of doors.\\n\\nTypical unit code(s): C62.",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "numberOfForwardGears": {
-      "description": "The total number of forward gears available for the transmission system of the vehicle.\\n\\nTypical unit code(s): C62",
+      "description": "The total number of forward gears available for the transmission system of the vehicle.\\n\\nTypical unit code(s): C62.",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "numberOfPreviousOwners": {
-      "description": "The number of owners of the vehicle, including the current one.\\n\\nTypical unit code(s): C62",
+      "description": "The number of owners of the vehicle, including the current one.\\n\\nTypical unit code(s): C62.",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "payload": {
@@ -152,16 +152,16 @@
       "format": "date"
     },
     "purchaseDate": {
-      "description": "The date the item e.g. vehicle was purchased by the current owner.",
+      "description": "The date the item, e.g. vehicle, was purchased by the current owner.",
       "type": "string",
       "format": "date"
     },
     "seatingCapacity": {
-      "description": "The number of persons that can be seated (e.g. in a vehicle), both in terms of the physical space available, and in terms of limitations set by law.\\n\\nTypical unit code(s): C62 for persons ",
+      "description": "The number of persons that can be seated (e.g. in a vehicle), both in terms of the physical space available, and in terms of limitations set by law.\\n\\nTypical unit code(s): C62 for persons.",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "speed": {
-      "description": "The speed range of the vehicle. If the vehicle is powered by an engine, the upper limit of the speed range (indicated by [[maxValue]] should be the maximum speed achievable under regular conditions.\\n\\nTypical unit code(s): KMH for km/h, HM for mile per hour (0.447 04 m/s), KNT for knot\\n\\n*Note 1: Use [[minValue]] and [[maxValue]] to indicate the range. Typically, the minimal value is zero.\\n* Note 2: There are many different ways of measuring the speed range. You can link to information about how the given value has been determined using the [[valueReference]] property.",
+      "description": "The speed range of the vehicle. If the vehicle is powered by an engine, the upper limit of the speed range (indicated by [[maxValue]]) should be the maximum speed achievable under regular conditions.\\n\\nTypical unit code(s): KMH for km/h, HM for mile per hour (0.447 04 m/s), KNT for knot\\n\\n*Note 1: Use [[minValue]] and [[maxValue]] to indicate the range. Typically, the minimal value is zero.\\n* Note 2: There are many different ways of measuring the speed range. You can link to information about how the given value has been determined using the [[valueReference]] property.",
       "$ref": "schema:QuantitativeValue"
     },
     "steeringPosition": {
@@ -169,7 +169,7 @@
       "$ref": "schema:SteeringPositionValue"
     },
     "tongueWeight": {
-      "description": "The permitted vertical load (TWR) of a trailer attached to the vehicle. Also referred to as Tongue Load Rating (TLR) or Vertical Load Rating (VLR)\\n\\nTypical unit code(s): KGM for kilogram, LBR for pound\\n\\n* Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.\\n* Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]].\\n* Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.",
+      "description": "The permitted vertical load (TWR) of a trailer attached to the vehicle. Also referred to as Tongue Load Rating (TLR) or Vertical Load Rating (VLR).\\n\\nTypical unit code(s): KGM for kilogram, LBR for pound\\n\\n* Note 1: You can indicate additional information in the [[name]] of the [[QuantitativeValue]] node.\\n* Note 2: You may also link to a [[QualitativeValue]] node that provides additional information using [[valueReference]].\\n* Note 3: Note that you can use [[minValue]] and [[maxValue]] to indicate ranges.",
       "$ref": "schema:QuantitativeValue"
     },
     "trailerWeight": {
@@ -236,7 +236,7 @@
       "$ref": "schema:QuantitativeValue"
     },
     "wheelbase": {
-      "description": "The distance between the centers of the front and rear wheels.\\n\\nTypical unit code(s): CMT for centimeters, MTR for meters, INH for inches, FOT for foot/feet",
+      "description": "The distance between the centers of the front and rear wheels.\\n\\nTypical unit code(s): CMT for centimeters, MTR for meters, INH for inches, FOT for foot/feet.",
       "$ref": "schema:QuantitativeValue"
     }
   }

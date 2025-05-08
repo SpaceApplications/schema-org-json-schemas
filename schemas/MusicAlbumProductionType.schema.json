@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:MusicAlbumProductionType",
   "title": "MusicAlbumProductionType",
-  "description": "Classification of the album by it's type of content: soundtrack, live album, studio album, etc.",
+  "description": "Classification of the album by its type of content: soundtrack, live album, studio album, etc.",
   "type": "string",
   "oneOf": [
     { "description": "CompilationAlbum.", "const": "CompilationAlbum" },

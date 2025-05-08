@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:IncentiveStatus",
+  "title": "IncentiveStatus",
+  "description": "Enumerates a status for an incentive, such as whether it is active.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "This incentive is currently active.",
+      "const": "IncentiveStatusActive"
+    },
+    {
+      "description": "This incentive is currently being developed, and may become active/retired in the future.",
+      "const": "IncentiveStatusInDevelopment"
+    },
+    {
+      "description": "This incentive is currently active, but may not be accepting new applicants (e.g. max number of redemptions reached for a year)",
+      "const": "IncentiveStatusOnHold"
+    },
+    {
+      "description": "This incentive is not longer available.",
+      "const": "IncentiveStatusRetired"
+    }
+  ]
+}

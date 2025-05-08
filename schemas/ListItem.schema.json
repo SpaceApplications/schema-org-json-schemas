@@ -12,7 +12,7 @@
   ],
   "properties": {
     "item": {
-      "description": "An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists')’.",
+      "description": "An entity represented by an entry in a list or data feed (e.g. an 'artist' in a list of 'artists').",
       "oneOf": [
         { "$ref": "schema:Thing" },
         { "type": "array", "items": { "$ref": "schema:Thing" } }
@@ -30,7 +30,7 @@
       "anyOf": [{ "type": "integer" }, { "type": "string" }]
     },
     "previousItem": {
-      "description": "A link to the ListItem that preceeds the current one.",
+      "description": "A link to the ListItem that precedes the current one.",
       "oneOf": [
         { "$ref": "schema:ListItem" },
         { "type": "array", "items": { "$ref": "schema:ListItem" } }

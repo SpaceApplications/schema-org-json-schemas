@@ -73,6 +73,7 @@
           "anyOf": [
             { "type": "string", "format": "uri" },
             { "type": "string" },
+            { "$ref": "schema:CategoryCode" },
             { "$ref": "schema:PhysicalActivityCategory" },
             { "$ref": "schema:Thing" }
           ]
@@ -83,11 +84,19 @@
             "anyOf": [
               { "type": "string", "format": "uri" },
               { "type": "string" },
+              { "$ref": "schema:CategoryCode" },
               { "$ref": "schema:PhysicalActivityCategory" },
               { "$ref": "schema:Thing" }
             ]
           }
         }
+      ]
+    },
+    "hasCertification": {
+      "description": "Certification information about a product, organization, service, place, or person.",
+      "oneOf": [
+        { "$ref": "schema:Certification" },
+        { "type": "array", "items": { "$ref": "schema:Certification" } }
       ]
     },
     "hasOfferCatalog": {

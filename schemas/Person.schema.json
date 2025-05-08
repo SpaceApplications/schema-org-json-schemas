@@ -26,6 +26,10 @@
         { "type": "array", "items": { "$ref": "schema:Organization" } }
       ]
     },
+    "agentInteractionStatistic": {
+      "description": "The number of completed interactions for this entity, in a particular role (the 'agent'), in a particular action (indicated in the statistic), and in a particular context (i.e. interactionService).",
+      "$ref": "schema:InteractionCounter"
+    },
     "alumniOf": {
       "description": "An organization that the person is an alumni of.",
       "oneOf": [
@@ -180,6 +184,13 @@
         }
       ]
     },
+    "funding": {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": [
+        { "$ref": "schema:Grant" },
+        { "type": "array", "items": { "$ref": "schema:Grant" } }
+      ]
+    },
     "gender": {
       "description": "Gender of something, typically a [[Person]], but possibly also fictional characters, animals, etc. While https://schema.org/Male and https://schema.org/Female may be used, text strings are also acceptable for people who do not identify as a binary gender. The [[gender]] property can also be used in an extended sense to cover e.g. the gender of sports teams. As with the gender of individuals, we do not try to enumerate all possibilities. A mixed-gender [[SportsTeam]] can be indicated with a text value of \"Mixed\".",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:GenderType" }]
@@ -194,6 +205,13 @@
     "globalLocationNumber": {
       "description": "The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.",
       "type": "string"
+    },
+    "hasCertification": {
+      "description": "Certification information about a product, organization, service, place, or person.",
+      "oneOf": [
+        { "$ref": "schema:Certification" },
+        { "type": "array", "items": { "$ref": "schema:Certification" } }
+      ]
     },
     "hasCredential": {
       "description": "A credential awarded to the Person or Organization.",
@@ -258,7 +276,7 @@
       ]
     },
     "honorificSuffix": {
-      "description": "An honorific suffix following a Person's name such as M.D. /PhD/MSCSW.",
+      "description": "An honorific suffix following a Person's name such as M.D./PhD/MSCSW.",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
@@ -326,6 +344,7 @@
       "oneOf": [
         {
           "anyOf": [
+            { "$ref": "schema:MemberProgramTier" },
             { "$ref": "schema:Organization" },
             { "$ref": "schema:ProgramMembership" }
           ]
@@ -334,6 +353,7 @@
           "type": "array",
           "items": {
             "anyOf": [
+              { "$ref": "schema:MemberProgramTier" },
               { "$ref": "schema:Organization" },
               { "$ref": "schema:ProgramMembership" }
             ]
@@ -353,7 +373,7 @@
       ]
     },
     "netWorth": {
-      "description": "The total financial value of the person as calculated by subtracting assets from liabilities.",
+      "description": "The total financial value of the person as calculated by subtracting the total value of liabilities from the total value of assets.",
       "anyOf": [
         { "$ref": "schema:MonetaryAmount" },
         { "$ref": "schema:PriceSpecification" }
@@ -401,7 +421,7 @@
       ]
     },
     "publishingPrinciples": {
-      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].\n\nWhile such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.\n",
+      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual, e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].\n\nWhile such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.\n",
       "anyOf": [
         { "type": "string", "format": "uri" },
         { "$ref": "schema:CreativeWork" }
@@ -432,8 +452,20 @@
         { "type": "array", "items": { "$ref": "schema:Person" } }
       ]
     },
+    "skills": {
+      "description": "A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is either claimed by a person, an organization or desired or required to fulfill a role or to work in an occupation.",
+      "oneOf": [
+        { "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }] },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }]
+          }
+        }
+      ]
+    },
     "sponsor": {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": [
         {
           "anyOf": [
@@ -467,7 +499,10 @@
     },
     "weight": {
       "description": "The weight of the product or person.",
-      "$ref": "schema:QuantitativeValue"
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Mass" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
     },
     "workLocation": {
       "description": "A contact location for a person's place of work.",

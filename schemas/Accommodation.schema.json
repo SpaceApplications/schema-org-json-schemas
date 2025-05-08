@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Accommodation",
   "title": "Accommodation",
-  "description": "An accommodation is a place that can accommodate human beings, e.g. a hotel room, a camping pitch, or a meeting room. Many accommodations are for overnight stays, but this is not a mandatory requirement.\nFor more specific types of accommodations not defined in schema.org, one can use additionalType with external vocabularies.\n\nSee also the dedicated document on the use of schema.org for marking up hotels and other forms of accommodations.\n",
+  "description": "An accommodation is a place that can accommodate human beings, e.g. a hotel room, a camping pitch, or a meeting room. Many accommodations are for overnight stays, but this is not a mandatory requirement.\nFor more specific types of accommodations not defined in schema.org, one can use [[additionalType]] with external vocabularies.\n\nSee also the dedicated document on the use of schema.org for marking up hotels and other forms of accommodations.\n",
   "type": "object",
   "allOf": [
     {
@@ -12,7 +12,7 @@
   ],
   "properties": {
     "accommodationCategory": {
-      "description": "Category of an [[Accommodation]], following real estate conventions e.g. RESO (see [PropertySubType](https://ddwiki.reso.org/display/DDW17/PropertySubType+Field), and [PropertyType](https://ddwiki.reso.org/display/DDW17/PropertyType+Field) fields  for suggested values).",
+      "description": "Category of an [[Accommodation]], following real estate conventions, e.g. RESO (see [PropertySubType](https://ddwiki.reso.org/display/DDW17/PropertySubType+Field), and [PropertyType](https://ddwiki.reso.org/display/DDW17/PropertyType+Field) fields  for suggested values).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
@@ -35,12 +35,20 @@
         }
       ]
     },
+    "bed": {
+      "description": "The type of bed or beds included in the accommodation. For the single case of just one bed of a certain type, you use bed directly with a text.\n      If you want to indicate the quantity of a certain kind of bed, use an instance of BedDetails. For more detailed information, use the amenityFeature property.",
+      "anyOf": [
+        { "type": "string" },
+        { "$ref": "schema:BedDetails" },
+        { "$ref": "schema:BedType" }
+      ]
+    },
     "floorLevel": {
       "description": "The floor level for an [[Accommodation]] in a multi-storey building. Since counting\n  systems [vary internationally](https://en.wikipedia.org/wiki/Storey#Consecutive_number_floor_designations), the local system should be used where possible.",
       "type": "string"
     },
     "floorSize": {
-      "description": "The size of the accommodation, e.g. in square meter or squarefoot.\nTypical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard ",
+      "description": "The size of the accommodation, e.g. in square meter or squarefoot.\nTypical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard.",
       "$ref": "schema:QuantitativeValue"
     },
     "leaseLength": {
@@ -64,7 +72,7 @@
       ]
     },
     "numberOfBathroomsTotal": {
-      "description": "The total integer number of bathrooms in a some [[Accommodation]], following real estate conventions as [documented in RESO](https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field): \"The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.\". See also [[numberOfRooms]].",
+      "description": "The total integer number of bathrooms in some [[Accommodation]], following real estate conventions as [documented in RESO](https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field): \"The simple sum of the number of bathrooms. For example for a property with two Full Bathrooms and one Half Bathroom, the Bathrooms Total Integer will be 3.\". See also [[numberOfRooms]].",
       "type": "integer"
     },
     "numberOfBedrooms": {
@@ -88,6 +96,10 @@
     "numberOfRooms": {
       "description": "The number of rooms (excluding bathrooms and closets) of the accommodation or lodging business.\nTypical unit code(s): ROM for room or C62 for no unit. The type of room can be put in the unitText property of the QuantitativeValue.",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
+    },
+    "occupancy": {
+      "description": "The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).\nTypical unit code(s): C62 for person.",
+      "$ref": "schema:QuantitativeValue"
     },
     "permittedUsage": {
       "description": "Indications regarding the permitted usage of the accommodation.",

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:TierBenefitEnumeration",
+  "title": "TierBenefitEnumeration",
+  "description": "An enumeration of possible benefits as part of a loyalty (members) program.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "Benefit of the tier is earning of loyalty points.",
+      "const": "TierBenefitLoyaltyPoints"
+    },
+    {
+      "description": "Benefit of the tier is a members-only price.",
+      "const": "TierBenefitLoyaltyPrice"
+    },
+    {
+      "description": "Benefit of the tier is members-only returns, for example free unlimited returns.",
+      "const": "TierBenefitLoyaltyReturns"
+    },
+    {
+      "description": "Benefit of the tier is a members-only shipping price or speed (for example free shipping or 1-day shipping).",
+      "const": "TierBenefitLoyaltyShipping"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:MemberProgramTier",
+  "title": "MemberProgramTier",
+  "description": "A MemberProgramTier specifies a tier under a loyalty (member) program, for example \"gold\".",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc.",
+      "$ref": "schema:Intangible"
+    }
+  ],
+  "properties": {
+    "hasTierBenefit": {
+      "description": "A member benefit for a particular tier of a loyalty program.",
+      "oneOf": [
+        { "$ref": "schema:TierBenefitEnumeration" },
+        {
+          "type": "array",
+          "items": { "$ref": "schema:TierBenefitEnumeration" }
+        }
+      ]
+    },
+    "hasTierRequirement": {
+      "description": "A requirement for a user to join a membership tier, for example: a CreditCard if the tier requires sign up for a credit card, A UnitPriceSpecification if the user is required to pay a (periodic) fee, or a MonetaryAmount if the user needs to spend a minimum amount to join the tier. If a tier is free to join then this property does not need to be specified.",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "schema:CreditCard" },
+            { "$ref": "schema:MonetaryAmount" },
+            { "$ref": "schema:UnitPriceSpecification" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "$ref": "schema:CreditCard" },
+              { "$ref": "schema:MonetaryAmount" },
+              { "$ref": "schema:UnitPriceSpecification" }
+            ]
+          }
+        }
+      ]
+    },
+    "isTierOf": {
+      "description": "The member program this tier is a part of.",
+      "$ref": "schema:MemberProgram"
+    },
+    "membershipPointsEarned": {
+      "description": "The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (E.g. stars, miles, etc.)",
+      "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
+    }
+  }
+}

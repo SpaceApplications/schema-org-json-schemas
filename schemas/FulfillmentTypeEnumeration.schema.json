@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:FulfillmentTypeEnumeration",
+  "title": "FulfillmentTypeEnumeration",
+  "description": "A type of product fulfillment.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "Fulfillment to a collection point location.",
+      "const": "FulfillmentTypeCollectionPoint"
+    },
+    {
+      "description": "Fulfillment to a customer selected address.",
+      "const": "FulfillmentTypeDelivery"
+    },
+    {
+      "description": "Fulfillment through pick-up drop-off locations.",
+      "const": "FulfillmentTypePickupDropoff"
+    },
+    {
+      "description": "Fulfillment through pick-up in a store.",
+      "const": "FulfillmentTypePickupInStore"
+    },
+    {
+      "description": "Fulfillment to a customer selected address after scheduling with the customer.",
+      "const": "FulfillmentTypeScheduledDelivery"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:DigitalPlatformEnumeration",
+  "title": "DigitalPlatformEnumeration",
+  "description": "Enumerates some common technology platforms, for use with properties such as [[actionPlatform]]. It is not supposed to be comprehensive - when a suitable code is not enumerated here, textual or URL values can be used instead. These codes are at a fairly high level and do not deal with versioning and other nuance. Additional codes can be suggested [in github](https://github.com/schemaorg/schemaorg/issues/3057). ",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "Represents the broad notion of Android-based operating systems.",
+      "const": "AndroidPlatform"
+    },
+    {
+      "description": "Represents the broad notion of 'desktop' browsers as a Web Platform.",
+      "const": "DesktopWebPlatform"
+    },
+    {
+      "description": "Represents the generic notion of the Web Platform. More specific codes include [[MobileWebPlatform]] and [[DesktopWebPlatform]], as an incomplete list. ",
+      "const": "GenericWebPlatform"
+    },
+    {
+      "description": "Represents the broad notion of iOS-based operating systems.",
+      "const": "IOSPlatform"
+    },
+    {
+      "description": "Represents the broad notion of 'mobile' browsers as a Web Platform.",
+      "const": "MobileWebPlatform"
+    }
+  ]
+}

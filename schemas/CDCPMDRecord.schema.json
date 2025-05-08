@@ -116,7 +116,7 @@
       ]
     },
     "cvdNumTotBeds": {
-      "description": "numtotbeds - ALL HOSPITAL BEDS: Total number of all Inpatient and outpatient beds, including all staffed,ICU, licensed, and overflow (surge) beds used for inpatients or outpatients.",
+      "description": "numtotbeds - ALL HOSPITAL BEDS: Total number of all inpatient and outpatient beds, including all staffed, ICU, licensed, and overflow (surge) beds used for inpatients or outpatients.",
       "oneOf": [
         { "type": "number" },
         { "type": "array", "items": { "type": "number" } }

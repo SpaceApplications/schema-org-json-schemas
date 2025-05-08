@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:GameAvailabilityEnumeration",
+  "title": "GameAvailabilityEnumeration",
+  "description": "For a [[VideoGame]], such as used with a [[PlayGameAction]], an enumeration of the kind of game availability offered. ",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "Indicates demo game availability, i.e. a somehow limited demonstration of the full game.",
+      "const": "DemoGameAvailability"
+    },
+    {
+      "description": "Indicates full game availability.",
+      "const": "FullGameAvailability"
+    }
+  ]
+}

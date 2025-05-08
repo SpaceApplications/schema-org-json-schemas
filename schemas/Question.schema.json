@@ -26,6 +26,10 @@
         { "type": "array", "items": { "type": "string" } }
       ]
     },
+    "parentItem": {
+      "description": "The parent of a question, answer or item in general. Typically used for Q/A discussion threads e.g. a chain of comments with the first comment being an [[Article]] or other [[CreativeWork]]. See also [[comment]] which points from something to a comment about it.",
+      "anyOf": [{ "$ref": "schema:Comment" }, { "$ref": "schema:CreativeWork" }]
+    },
     "suggestedAnswer": {
       "description": "An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.",
       "oneOf": [

@@ -12,7 +12,7 @@
   ],
   "properties": {
     "geoMidpoint": {
-      "description": "Indicates the GeoCoordinates at the centre of a GeoShape e.g. GeoCircle.",
+      "description": "Indicates the GeoCoordinates at the centre of a GeoShape, e.g. GeoCircle.",
       "oneOf": [
         { "$ref": "schema:GeoCoordinates" },
         { "type": "array", "items": { "$ref": "schema:GeoCoordinates" } }

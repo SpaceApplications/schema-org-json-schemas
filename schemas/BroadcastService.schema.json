@@ -24,14 +24,14 @@
       "type": "string"
     },
     "broadcastFrequency": {
-      "description": "The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. \"87 FM\".",
+      "description": "The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequencies of AM and FM radio channels, e.g. \"87 FM\".",
       "anyOf": [
         { "type": "string" },
         { "$ref": "schema:BroadcastFrequencySpecification" }
       ]
     },
     "broadcastTimezone": {
-      "description": "The timezone in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) for which the service bases its broadcasts",
+      "description": "The timezone in [ISO 8601 format](http://en.wikipedia.org/wiki/ISO_8601) for which the service bases its broadcasts.",
       "type": "string"
     },
     "broadcaster": {

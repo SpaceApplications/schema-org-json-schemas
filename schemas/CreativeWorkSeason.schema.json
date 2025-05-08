@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:CreativeWorkSeason",
   "title": "CreativeWorkSeason",
-  "description": "A media season e.g. tv, radio, video game etc.",
+  "description": "A media season, e.g. TV, radio, video game etc.",
   "type": "object",
   "allOf": [
     {
@@ -12,14 +12,27 @@
   ],
   "properties": {
     "actor": {
-      "description": "An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
+      "description": "An actor (individual or a group), e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
       "oneOf": [
-        { "$ref": "schema:Person" },
-        { "type": "array", "items": { "$ref": "schema:Person" } }
+        {
+          "anyOf": [
+            { "$ref": "schema:PerformingGroup" },
+            { "$ref": "schema:Person" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:PerformingGroup" },
+              { "$ref": "schema:Person" }
+            ]
+          }
+        }
       ]
     },
     "director": {
-      "description": "A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
+      "description": "A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
       "$ref": "schema:Person"
     },
     "endDate": {
@@ -30,7 +43,7 @@
       ]
     },
     "episode": {
-      "description": "An episode of a tv, radio or game media within a series or season.",
+      "description": "An episode of a TV, radio or game media within a series or season.",
       "oneOf": [
         { "$ref": "schema:Episode" },
         { "type": "array", "items": { "$ref": "schema:Episode" } }
@@ -52,7 +65,7 @@
       "$ref": "schema:CreativeWorkSeries"
     },
     "productionCompany": {
-      "description": "The production company or studio responsible for the item e.g. series, video game, episode etc.",
+      "description": "The production company or studio responsible for the item, e.g. series, video game, episode etc.",
       "$ref": "schema:Organization"
     },
     "seasonNumber": {
@@ -67,7 +80,7 @@
       ]
     },
     "trailer": {
-      "description": "The trailer of a movie or tv/radio series, season, episode, etc.",
+      "description": "The trailer of a movie or TV/radio series, season, episode, etc.",
       "$ref": "schema:VideoObject"
     }
   }

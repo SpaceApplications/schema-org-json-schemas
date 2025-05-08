@@ -25,7 +25,7 @@
     },
     "orderQuantity": {
       "description": "The number of the item ordered. If the property is not set, assume the quantity is one.",
-      "type": "number"
+      "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "orderedItem": {
       "description": "The item ordered.",

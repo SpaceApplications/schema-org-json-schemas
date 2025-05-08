@@ -68,6 +68,10 @@
         { "$ref": "schema:Trip" },
         { "type": "array", "items": { "$ref": "schema:Trip" } }
       ]
+    },
+    "tripOrigin": {
+      "description": "The location of origin of the trip, prior to any destination(s).",
+      "$ref": "schema:Place"
     }
   }
 }

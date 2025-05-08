@@ -2,9 +2,13 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Drug",
   "title": "Drug",
-  "description": "A chemical or biologic substance, used as a medical therapy, that has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine although clinical knowledge make a clear difference between them.",
+  "description": "A chemical or biologic substance, used as a medical therapy, that has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine although clinical knowledge makes a clear difference between them.",
   "type": "object",
   "allOf": [
+    {
+      "description": "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online.",
+      "$ref": "schema:Product"
+    },
     {
       "description": "Any matter of defined composition that has discrete existence, whose origin may be biological, mineral or chemical.",
       "$ref": "schema:Substance"
@@ -109,10 +113,6 @@
         { "$ref": "schema:MedicalEnumeration" }
       ]
     },
-    "manufacturer": {
-      "description": "The manufacturer of the product.",
-      "$ref": "schema:Organization"
-    },
     "maximumIntake": {
       "description": "Recommended intake of this supplement for a given population as defined by a specific recommending authority.",
       "$ref": "schema:MaximumDoseSchedule"
@@ -143,7 +143,7 @@
       "format": "uri"
     },
     "prescriptionStatus": {
-      "description": "Indicates the status of drug prescription eg. local catalogs classifications or whether the drug is available by prescription or over-the-counter, etc.",
+      "description": "Indicates the status of drug prescription, e.g. local catalogs classifications or whether the drug is available by prescription or over-the-counter, etc.",
       "anyOf": [
         { "type": "string" },
         { "$ref": "schema:DrugPrescriptionStatus" }

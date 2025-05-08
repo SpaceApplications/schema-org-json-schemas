@@ -16,11 +16,11 @@
   ],
   "properties": {
     "branchOf": {
-      "description": "The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical)[[branch]].",
+      "description": "The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical) [[branch]].",
       "$ref": "schema:Organization"
     },
     "currenciesAccepted": {
-      "description": "The currency accepted.\\n\\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. \"USD\"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. \"BTC\"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. \"Ithaca HOUR\".",
+      "description": "The currency accepted.\\n\\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. \"USD\"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. \"BTC\"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. \"Ithaca HOUR\".",
       "type": "string"
     },
     "openingHours": {

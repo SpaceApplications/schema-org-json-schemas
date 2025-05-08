@@ -12,10 +12,22 @@
   ],
   "properties": {
     "additionalProperty": {
-      "description": "A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\\n\\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.\n",
+      "description": "A property-value pair representing an additional characteristic of the entity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\\n\\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.\n",
       "oneOf": [
         { "$ref": "schema:PropertyValue" },
         { "type": "array", "items": { "$ref": "schema:PropertyValue" } }
+      ]
+    },
+    "applicableCountry": {
+      "description": "A country where a particular merchant return policy applies to, for example the two-letter ISO 3166-1 alpha-2 country code.",
+      "oneOf": [
+        { "anyOf": [{ "type": "string" }, { "$ref": "schema:Country" }] },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:Country" }]
+          }
+        }
       ]
     },
     "customerRemorseReturnFees": {
@@ -31,7 +43,7 @@
       "$ref": "schema:MonetaryAmount"
     },
     "inStoreReturnsOffered": {
-      "description": "Are in-store returns offered? (for more advanced return methods use the [[returnMethod]] property)",
+      "description": "Are in-store returns offered? (For more advanced return methods use the [[returnMethod]] property.)",
       "type": "boolean"
     },
     "itemCondition": {
@@ -107,7 +119,7 @@
       ]
     },
     "returnFees": {
-      "description": "The type of return fees for purchased products (for any return reason)",
+      "description": "The type of return fees for purchased products (for any return reason).",
       "$ref": "schema:ReturnFeesEnumeration"
     },
     "returnLabelSource": {
@@ -129,7 +141,7 @@
       ]
     },
     "returnPolicyCountry": {
-      "description": "The country where the product has to be sent to for returns, for example \"Ireland\" using the [[name]] property of [[Country]]. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1). Note that this can be different from the country where the product was originally shipped from or sent too.",
+      "description": "The country where the product has to be sent to for returns, for example \"Ireland\" using the [[name]] property of [[Country]]. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1). Note that this can be different from the country where the product was originally shipped from or sent to.",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:Country" }]
     },
     "returnPolicySeasonalOverride": {
@@ -148,6 +160,10 @@
         { "$ref": "schema:MonetaryAmount" },
         { "type": "array", "items": { "$ref": "schema:MonetaryAmount" } }
       ]
+    },
+    "validForMemberTier": {
+      "description": "The membership program tier an Offer (or a PriceSpecification, OfferShippingDetails, or MerchantReturnPolicy under an Offer) is valid for.",
+      "$ref": "schema:MemberProgramTier"
     }
   }
 }

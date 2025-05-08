@@ -15,6 +15,13 @@
         { "type": "array", "items": { "$ref": "schema:MedicalCode" } }
       ]
     },
+    "funding": {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": [
+        { "$ref": "schema:Grant" },
+        { "type": "array", "items": { "$ref": "schema:Grant" } }
+      ]
+    },
     "guideline": {
       "description": "A medical guideline related to this entity.",
       "oneOf": [

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:MemberProgram",
+  "title": "MemberProgram",
+  "description": "A MemberProgram defines a loyalty (or membership) program that provides its members with certain benefits, for example better pricing, free shipping or returns, or the ability to earn loyalty points. Member programs may have multiple tiers, for example silver and gold members, each with different benefits.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc.",
+      "$ref": "schema:Intangible"
+    }
+  ],
+  "properties": {
+    "hasTiers": {
+      "description": "The tiers of a member program.",
+      "$ref": "schema:MemberProgramTier"
+    },
+    "hostingOrganization": {
+      "description": "The Organization (airline, travelers' club, retailer, etc.) the membership is made with or which offers the  MemberProgram.",
+      "$ref": "schema:Organization"
+    }
+  }
+}

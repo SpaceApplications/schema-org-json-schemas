@@ -40,6 +40,35 @@
         }
       ]
     },
+    "refundType": {
+      "description": "A refund type, from an enumerated list.",
+      "oneOf": [
+        { "$ref": "schema:RefundTypeEnumeration" },
+        { "type": "array", "items": { "$ref": "schema:RefundTypeEnumeration" } }
+      ]
+    },
+    "restockingFee": {
+      "description": "Use [[MonetaryAmount]] to specify a fixed restocking fee for product returns, or use [[Number]] to specify a percentage of the product price paid by the customer.",
+      "oneOf": [
+        {
+          "anyOf": [{ "type": "number" }, { "$ref": "schema:MonetaryAmount" }]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "number" }, { "$ref": "schema:MonetaryAmount" }]
+          }
+        }
+      ]
+    },
+    "returnFees": {
+      "description": "The type of return fees for purchased products (for any return reason).",
+      "$ref": "schema:ReturnFeesEnumeration"
+    },
+    "returnMethod": {
+      "description": "The type of return method offered, specified from an enumeration.",
+      "$ref": "schema:ReturnMethodEnumeration"
+    },
     "returnPolicyCategory": {
       "description": "Specifies an applicable return policy (from an enumeration).",
       "oneOf": [
@@ -48,6 +77,13 @@
           "type": "array",
           "items": { "$ref": "schema:MerchantReturnEnumeration" }
         }
+      ]
+    },
+    "returnShippingFeesAmount": {
+      "description": "Amount of shipping costs for product returns (for any reason). Applicable when property [[returnFees]] equals [[ReturnShippingFees]].",
+      "oneOf": [
+        { "$ref": "schema:MonetaryAmount" },
+        { "type": "array", "items": { "$ref": "schema:MonetaryAmount" } }
       ]
     },
     "startDate": {

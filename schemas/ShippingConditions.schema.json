@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:ShippingConditions",
+  "title": "ShippingConditions",
+  "description": "ShippingConditions represent a set of constraints and information about the conditions of shipping a product. Such conditions may apply to only a subset of the products being shipped, depending on aspects of the product like weight, size, price, destination, and others. All the specified conditions must be met for this ShippingConditions to apply.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing.",
+      "$ref": "schema:StructuredValue"
+    }
+  ],
+  "properties": {
+    "depth": {
+      "description": "The depth of the item.",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Distance" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
+    },
+    "doesNotShip": {
+      "description": "Indicates when shipping to a particular [[shippingDestination]] is not available.",
+      "type": "boolean"
+    },
+    "height": {
+      "description": "The height of the item.",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Distance" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
+    },
+    "numItems": {
+      "description": "Limits the number of items being shipped for which these conditions apply.",
+      "oneOf": [
+        { "$ref": "schema:QuantitativeValue" },
+        { "type": "array", "items": { "$ref": "schema:QuantitativeValue" } }
+      ]
+    },
+    "orderValue": {
+      "description": "Minimum and maximum order value for which these shipping conditions are valid.",
+      "oneOf": [
+        { "$ref": "schema:MonetaryAmount" },
+        { "type": "array", "items": { "$ref": "schema:MonetaryAmount" } }
+      ]
+    },
+    "seasonalOverride": {
+      "description": "Limited period during which these shipping conditions apply.",
+      "oneOf": [
+        { "$ref": "schema:OpeningHoursSpecification" },
+        {
+          "type": "array",
+          "items": { "$ref": "schema:OpeningHoursSpecification" }
+        }
+      ]
+    },
+    "shippingDestination": {
+      "description": "indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.",
+      "oneOf": [
+        { "$ref": "schema:DefinedRegion" },
+        { "type": "array", "items": { "$ref": "schema:DefinedRegion" } }
+      ]
+    },
+    "shippingOrigin": {
+      "description": "Indicates the origin of a shipment, i.e. where it should be coming from.",
+      "oneOf": [
+        { "$ref": "schema:DefinedRegion" },
+        { "type": "array", "items": { "$ref": "schema:DefinedRegion" } }
+      ]
+    },
+    "shippingRate": {
+      "description": "The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.",
+      "anyOf": [
+        { "$ref": "schema:MonetaryAmount" },
+        { "$ref": "schema:ShippingRateSettings" }
+      ]
+    },
+    "transitTime": {
+      "description": "The typical delay the order has been sent for delivery and the goods reach the final customer.\n\n  In the context of [[ShippingDeliveryTime]], use the [[QuantitativeValue]]. Typical properties: minValue, maxValue, unitCode (d for DAY).\n\n  In the context of [[ShippingConditions]], use the [[ServicePeriod]]. It has a duration (as a [[QuantitativeValue]]) and also business days and a cut-off time.\n",
+      "anyOf": [
+        { "$ref": "schema:QuantitativeValue" },
+        { "$ref": "schema:ServicePeriod" }
+      ]
+    },
+    "weight": {
+      "description": "The weight of the product or person.",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Mass" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
+    },
+    "width": {
+      "description": "The width of the item.",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Distance" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
+    }
+  }
+}

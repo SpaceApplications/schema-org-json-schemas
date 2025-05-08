@@ -64,7 +64,7 @@
       ]
     },
     "monoisotopicMolecularWeight": {
-      "description": "The monoisotopic mass is the sum of the masses of the atoms in a molecule using the unbound, ground-state, rest mass of the principal (most abundant) isotope for each element instead of the isotopic average mass. Please include the units the form '<Number> <unit>', for example '770.230488 g/mol' or as '<QuantitativeValue>.",
+      "description": "The monoisotopic mass is the sum of the masses of the atoms in a molecule using the unbound, ground-state, rest mass of the principal (most abundant) isotope for each element instead of the isotopic average mass. Please include the units in the form '<Number> <unit>', for example '770.230488 g/mol' or as '<QuantitativeValue>.",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "potentialUse": {

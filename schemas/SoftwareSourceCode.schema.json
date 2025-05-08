@@ -12,7 +12,7 @@
   ],
   "properties": {
     "codeRepository": {
-      "description": "Link to the repository where the un-compiled, human readable code and related code is located (SVN, github, CodePlex).",
+      "description": "Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex).",
       "oneOf": [
         { "type": "string", "format": "uri" },
         { "type": "array", "items": { "type": "string", "format": "uri" } }
@@ -43,11 +43,11 @@
       ]
     },
     "runtime": {
-      "description": "Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).",
+      "description": "Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0).",
       "type": "string"
     },
     "runtimePlatform": {
-      "description": "Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0).",
+      "description": "Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }

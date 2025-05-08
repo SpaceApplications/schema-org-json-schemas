@@ -60,7 +60,7 @@
       ]
     },
     "taxonRank": {
-      "description": "The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – (typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs).",
+      "description": "The taxonomic rank of this taxon given preferably as a URI from a controlled vocabulary – typically the ranks from TDWG TaxonRank ontology or equivalent Wikidata URIs.",
       "anyOf": [
         { "type": "string", "format": "uri" },
         { "type": "string" },

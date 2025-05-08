@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:IncentiveQualifiedExpenseType",
+  "title": "IncentiveQualifiedExpenseType",
+  "description": "The types of expenses that are covered by the incentive. For example some incentives are only for the goods (tangible items) but the services (labor) are excluded.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "This incentive applies to goods only.",
+      "const": "IncentiveQualifiedExpenseTypeGoodsOnly"
+    },
+    {
+      "description": "This incentive can apply to either goods or services (or both).",
+      "const": "IncentiveQualifiedExpenseTypeGoodsOrServices"
+    },
+    {
+      "description": "This incentive applies to services only.",
+      "const": "IncentiveQualifiedExpenseTypeServicesOnly"
+    },
+    {
+      "description": "This incentive applies to utility bills.",
+      "const": "IncentiveQualifiedExpenseTypeUtilityBill"
+    }
+  ]
+}

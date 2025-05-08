@@ -16,7 +16,7 @@
       "type": "string"
     },
     "broadcastFrequency": {
-      "description": "The frequency used for over-the-air broadcasts. Numeric values or simple ranges e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. \"87 FM\".",
+      "description": "The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequencies of AM and FM radio channels, e.g. \"87 FM\".",
       "anyOf": [
         { "type": "string" },
         { "$ref": "schema:BroadcastFrequencySpecification" }

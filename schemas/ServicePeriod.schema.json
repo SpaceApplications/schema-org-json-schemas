@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:ServicePeriod",
+  "title": "ServicePeriod",
+  "description": "ServicePeriod represents a duration with some constraints about cutoff time and business days. This is used e.g. in shipping for handling times or transit time.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing.",
+      "$ref": "schema:StructuredValue"
+    }
+  ],
+  "properties": {
+    "businessDays": {
+      "description": "Days of the week when the merchant typically operates, indicated via opening hours markup.",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "$ref": "schema:DayOfWeek" },
+            { "$ref": "schema:OpeningHoursSpecification" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:DayOfWeek" },
+              { "$ref": "schema:OpeningHoursSpecification" }
+            ]
+          }
+        }
+      ]
+    },
+    "cutoffTime": {
+      "description": "Order cutoff time allows merchants to describe the time after which they will no longer process orders received on that day. For orders processed after cutoff time, one day gets added to the delivery time estimate. This property is expected to be most typically used via the [[ShippingRateSettings]] publication pattern. The time is indicated using the ISO-8601 Time format, e.g. \"23:30:00-05:00\" would represent 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated Universal Time (UTC).",
+      "oneOf": [
+        { "type": "string", "format": "time" },
+        { "type": "array", "items": { "type": "string", "format": "time" } }
+      ]
+    },
+    "duration": {
+      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Duration" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
+    }
+  }
+}

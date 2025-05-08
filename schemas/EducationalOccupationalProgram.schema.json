@@ -12,9 +12,8 @@
   ],
   "properties": {
     "applicationDeadline": {
-      "description": "The date at which the program stops collecting applications for the next enrollment cycle.",
-      "type": "string",
-      "format": "date"
+      "description": "The date on which the program stops collecting applications for the next enrollment cycle. Flexible application deadlines (for example, a program with rolling admissions) can be described in a textual string, rather than as a DateTime.",
+      "anyOf": [{ "type": "string", "format": "date" }, { "type": "string" }]
     },
     "applicationStartDate": {
       "description": "The date at which the program begins collecting applications for the next enrollment cycle.",
@@ -48,7 +47,7 @@
       ]
     },
     "educationalProgramMode": {
-      "description": "Similar to courseMode, The medium or means of delivery of the program as a whole. The value may either be a text label (e.g. \"online\", \"onsite\" or \"blended\"; \"synchronous\" or \"asynchronous\"; \"full-time\" or \"part-time\") or a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).",
+      "description": "Similar to courseMode, the medium or means of delivery of the program as a whole. The value may either be a text label (e.g. \"online\", \"onsite\" or \"blended\"; \"synchronous\" or \"asynchronous\"; \"full-time\" or \"part-time\") or a URL reference to a term from a controlled vocabulary (e.g. https://ceds.ed.gov/element/001311#Asynchronous ).",
       "oneOf": [
         {
           "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
@@ -169,7 +168,7 @@
       ]
     },
     "programType": {
-      "description": "The type of educational or occupational program. For example, classroom, internship, alternance, etc..",
+      "description": "The type of educational or occupational program. For example, classroom, internship, alternance, etc.",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }]
     },
     "provider": {

@@ -14,7 +14,7 @@
       "const": "OriginalShippingFees"
     },
     {
-      "description": "Specifies that the customer must pay a restocking fee when returning a product",
+      "description": "Specifies that the customer must pay a restocking fee when returning a product.",
       "const": "RestockingFees"
     },
     {
@@ -22,7 +22,7 @@
       "const": "ReturnFeesCustomerResponsibility"
     },
     {
-      "description": "Specifies that the customer must pay the return shipping costs when returning a product",
+      "description": "Specifies that the customer must pay the return shipping costs when returning a product.",
       "const": "ReturnShippingFees"
     }
   ]

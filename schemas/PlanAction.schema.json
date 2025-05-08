@@ -13,8 +13,10 @@
   "properties": {
     "scheduledTime": {
       "description": "The time the object is scheduled to.",
-      "type": "string",
-      "format": "date-time"
+      "anyOf": [
+        { "type": "string", "format": "date" },
+        { "type": "string", "format": "date-time" }
+      ]
     }
   }
 }

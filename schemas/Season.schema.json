@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Season",
   "title": "Season",
-  "description": "A media season e.g. tv, radio, video game etc.",
+  "description": "A media season, e.g. TV, radio, video game etc.",
   "type": "object",
   "allOf": [
     {

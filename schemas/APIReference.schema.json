@@ -12,15 +12,15 @@
   ],
   "properties": {
     "assembly": {
-      "description": "Library file name e.g., mscorlib.dll, system.web.dll.",
+      "description": "Library file name, e.g., mscorlib.dll, system.web.dll.",
       "type": "string"
     },
     "assemblyVersion": {
-      "description": "Associated product/technology version. e.g., .NET Framework 4.5.",
+      "description": "Associated product/technology version. E.g., .NET Framework 4.5.",
       "type": "string"
     },
     "executableLibraryName": {
-      "description": "Library file name e.g., mscorlib.dll, system.web.dll.",
+      "description": "Library file name, e.g., mscorlib.dll, system.web.dll.",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }

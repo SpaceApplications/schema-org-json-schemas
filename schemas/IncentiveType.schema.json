@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:IncentiveType",
+  "title": "IncentiveType",
+  "description": "Enumerates common financial incentives for products, including tax credits, tax deductions, rebates and subsidies, etc.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "An incentive where the recipient can receive additional funding for the purchase/lease of the good/service, which must be paid back.",
+      "const": "IncentiveTypeLoan"
+    },
+    {
+      "description": "An incentive that reduces the purchase/lease cost of the good/service in question.",
+      "const": "IncentiveTypeRebateOrSubsidy"
+    },
+    {
+      "description": "An incentive that directly reduces the amount of tax owed by the recipient.",
+      "const": "IncentiveTypeTaxCredit"
+    },
+    {
+      "description": "An incentive that reduces the recipient's amount of taxable income.",
+      "const": "IncentiveTypeTaxDeduction"
+    },
+    {
+      "description": "An incentive that reduces/exempts the recipient from taxation applicable to the incentivized good/service (e.g. luxury taxes, registration taxes, circulation tax).",
+      "const": "IncentiveTypeTaxWaiver"
+    }
+  ]
+}

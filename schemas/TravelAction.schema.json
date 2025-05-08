@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:TravelAction",
   "title": "TravelAction",
-  "description": "The act of traveling from an fromLocation to a destination by a specified mode of transport, optionally with participants.",
+  "description": "The act of traveling from a fromLocation to a destination by a specified mode of transport, optionally with participants.",
   "type": "object",
   "allOf": [
     {

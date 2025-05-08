@@ -111,8 +111,8 @@
       ]
     },
     "hiringOrganization": {
-      "description": "Organization offering the job position.",
-      "$ref": "schema:Organization"
+      "description": "Organization or Person offering the job position.",
+      "anyOf": [{ "$ref": "schema:Organization" }, { "$ref": "schema:Person" }]
     },
     "incentiveCompensation": {
       "description": "Description of bonus and commission compensation aspects of the job.",
@@ -151,7 +151,7 @@
       ]
     },
     "jobLocationType": {
-      "description": "A description of the job location (e.g TELECOMMUTE for telecommute jobs).",
+      "description": "A description of the job location (e.g. TELECOMMUTE for telecommute jobs).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
@@ -227,7 +227,7 @@
       ]
     },
     "salaryCurrency": {
-      "description": "The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) ) used for the main salary information in this job posting or for this employee.",
+      "description": "The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)) used for the main salary information in this job posting or for this employee.",
       "type": "string"
     },
     "securityClearanceRequirement": {
@@ -270,7 +270,7 @@
       ]
     },
     "skills": {
-      "description": "A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is desired or required to fulfill this role or to work in this occupation.",
+      "description": "A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is either claimed by a person, an organization or desired or required to fulfill a role or to work in an occupation.",
       "oneOf": [
         { "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }] },
         {

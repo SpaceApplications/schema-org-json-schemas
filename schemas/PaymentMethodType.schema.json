@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:PaymentMethodType",
+  "title": "PaymentMethodType",
+  "description": "The type of payment method, only for generic payment types, specific forms of payments, like card payment should be expressed using subclasses of PaymentMethod.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "Payment in advance by bank transfer, equivalent to http://purl.org/goodrelations/v1#ByBankTransferInAdvance.",
+      "const": "ByBankTransferInAdvance"
+    },
+    {
+      "description": "Payment by invoice, typically after the goods were delivered, equivalent to http://purl.org/goodrelations/v1#ByInvoice.",
+      "const": "ByInvoice"
+    },
+    {
+      "description": "Cash on Delivery (COD) payment, equivalent to http://purl.org/goodrelations/v1#COD.",
+      "const": "COD"
+    },
+    {
+      "description": "Payment using cash, on premises, equivalent to http://purl.org/goodrelations/v1#Cash.",
+      "const": "Cash"
+    },
+    {
+      "description": "Payment in advance by sending a check, equivalent to http://purl.org/goodrelations/v1#CheckInAdvance.",
+      "const": "CheckInAdvance"
+    },
+    {
+      "description": "Payment in advance by direct debit from the bank, equivalent to http://purl.org/goodrelations/v1#DirectDebit.",
+      "const": "DirectDebit"
+    },
+    {
+      "description": "Payment in advance in some form of shop or kiosk for goods purchased online.",
+      "const": "InStorePrepay"
+    },
+    {
+      "description": "Payment by billing via the phone carrier.",
+      "const": "PhoneCarrierPayment"
+    }
+  ]
+}

@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Physician",
   "title": "Physician",
-  "description": "A doctor's office.",
+  "description": "An individual physician or a physician's office considered as a [[MedicalOrganization]].",
   "type": "object",
   "allOf": [
     {
-      "description": "A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include differents business run by health professionals.",
+      "description": "A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include different businesses run by health professionals.",
       "$ref": "schema:MedicalBusiness"
     },
     {
@@ -49,6 +49,25 @@
       "oneOf": [
         { "$ref": "schema:MedicalSpecialty" },
         { "type": "array", "items": { "$ref": "schema:MedicalSpecialty" } }
+      ]
+    },
+    "occupationalCategory": {
+      "description": "A category describing the job, preferably using a term from a taxonomy such as [BLS O*NET-SOC](http://www.onetcenter.org/taxonomy.html), [ISCO-08](https://www.ilo.org/public/english/bureau/stat/isco/isco08/) or similar, with the property repeated for each applicable value. Ideally the taxonomy should be identified, and both the textual label and formal code for the category should be provided.\\n\nNote: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.",
+      "oneOf": [
+        { "anyOf": [{ "type": "string" }, { "$ref": "schema:CategoryCode" }] },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:CategoryCode" }]
+          }
+        }
+      ]
+    },
+    "usNPI": {
+      "description": "A National Provider Identifier (NPI) \n    is a unique 10-digit identification number issued to health care providers in the United States by the Centers for Medicare and Medicaid Services.",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
       ]
     }
   }

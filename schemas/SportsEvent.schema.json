@@ -39,6 +39,13 @@
       "description": "The home team in a sports event.",
       "anyOf": [{ "$ref": "schema:Person" }, { "$ref": "schema:SportsTeam" }]
     },
+    "referee": {
+      "description": "An official who watches a game or match closely to enforce the rules and arbitrate on matters arising from the play such as referees, umpires or judges. The name of the effective function can vary according to the sport.",
+      "oneOf": [
+        { "$ref": "schema:Person" },
+        { "type": "array", "items": { "$ref": "schema:Person" } }
+      ]
+    },
     "sport": {
       "description": "A type of sport (e.g. Baseball).",
       "oneOf": [

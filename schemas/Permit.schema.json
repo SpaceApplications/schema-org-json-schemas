@@ -12,11 +12,11 @@
   ],
   "properties": {
     "issuedBy": {
-      "description": "The organization issuing the ticket or permit.",
+      "description": "The organization issuing the item, for example a [[Permit]], [[Ticket]], or [[Certification]].",
       "$ref": "schema:Organization"
     },
     "issuedThrough": {
-      "description": "The service through with the permit was granted.",
+      "description": "The service through which the permit was granted.",
       "$ref": "schema:Service"
     },
     "permitAudience": {
@@ -36,7 +36,7 @@
       ]
     },
     "validIn": {
-      "description": "The geographic area where a permit or similar thing is valid.",
+      "description": "The geographic area where the item is valid. Applies for example to a [[Permit]], a [[Certification]], or an [[EducationalOccupationalCredential]]. ",
       "$ref": "schema:AdministrativeArea"
     },
     "validUntil": {

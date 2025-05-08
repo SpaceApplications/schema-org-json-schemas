@@ -16,14 +16,27 @@
   ],
   "properties": {
     "actor": {
-      "description": "An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
+      "description": "An actor (individual or a group), e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
       "oneOf": [
-        { "$ref": "schema:Person" },
-        { "type": "array", "items": { "$ref": "schema:Person" } }
+        {
+          "anyOf": [
+            { "$ref": "schema:PerformingGroup" },
+            { "$ref": "schema:Person" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:PerformingGroup" },
+              { "$ref": "schema:Person" }
+            ]
+          }
+        }
       ]
     },
     "actors": {
-      "description": "An actor, e.g. in tv, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.",
+      "description": "An actor, e.g. in TV, radio, movie, video games etc. Actors can be associated with individual items or with a series, episode, clip.",
       "oneOf": [
         { "$ref": "schema:Person" },
         { "type": "array", "items": { "$ref": "schema:Person" } }
@@ -37,15 +50,19 @@
       ]
     },
     "director": {
-      "description": "A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
+      "description": "A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
       "$ref": "schema:Person"
     },
     "directors": {
-      "description": "A director of e.g. tv, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.",
+      "description": "A director of e.g. TV, radio, movie, video games etc. content. Directors can be associated with individual items or with a series, episode, clip.",
       "oneOf": [
         { "$ref": "schema:Person" },
         { "type": "array", "items": { "$ref": "schema:Person" } }
       ]
+    },
+    "gameEdition": {
+      "description": "The edition of a video game.",
+      "type": "string"
     },
     "gamePlatform": {
       "description": "The electronic systems used to play video games.",
@@ -78,7 +95,7 @@
       ]
     },
     "trailer": {
-      "description": "The trailer of a movie or tv/radio series, season, episode, etc.",
+      "description": "The trailer of a movie or TV/radio series, season, episode, etc.",
       "$ref": "schema:VideoObject"
     }
   }

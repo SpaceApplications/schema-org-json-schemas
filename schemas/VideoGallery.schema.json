@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "description": "Web page type: Media gallery page. A mixed-media page that can contains media such as images, videos, and other multimedia.",
+      "description": "Web page type: Media gallery page. A mixed-media page that can contain media such as images, videos, and other multimedia.",
       "$ref": "schema:MediaGallery"
     }
   ]

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Collection",
   "title": "Collection",
-  "description": "A collection of items e.g. creative works or products.",
+  "description": "A collection of items, e.g. creative works or products.",
   "type": "object",
   "allOf": [
     {

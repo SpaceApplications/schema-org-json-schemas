@@ -32,7 +32,7 @@
       ]
     },
     "termCode": {
-      "description": "A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]",
+      "description": "A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]].",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }

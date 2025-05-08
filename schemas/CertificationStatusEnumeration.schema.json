@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:CertificationStatusEnumeration",
+  "title": "CertificationStatusEnumeration",
+  "description": "Enumerates the different statuses of a Certification (Active and Inactive).",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "Specifies that a certification is active.",
+      "const": "CertificationActive"
+    },
+    {
+      "description": "Specifies that a certification is inactive (no longer in effect).",
+      "const": "CertificationInactive"
+    }
+  ]
+}

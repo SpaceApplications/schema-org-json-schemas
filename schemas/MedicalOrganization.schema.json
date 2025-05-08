@@ -12,7 +12,7 @@
   ],
   "properties": {
     "healthPlanNetworkId": {
-      "description": "Name or unique ID of network. (Networks are often reused across different insurance plans).",
+      "description": "Name or unique ID of network. (Networks are often reused across different insurance plans.)",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }

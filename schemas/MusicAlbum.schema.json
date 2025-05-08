@@ -12,7 +12,7 @@
   ],
   "properties": {
     "albumProductionType": {
-      "description": "Classification of the album by it's type of content: soundtrack, live album, studio album, etc.",
+      "description": "Classification of the album by its type of content: soundtrack, live album, studio album, etc.",
       "oneOf": [
         { "$ref": "schema:MusicAlbumProductionType" },
         {

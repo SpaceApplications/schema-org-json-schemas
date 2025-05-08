@@ -18,6 +18,7 @@
           "anyOf": [
             { "type": "string", "format": "uri" },
             { "type": "string" },
+            { "$ref": "schema:CategoryCode" },
             { "$ref": "schema:PhysicalActivityCategory" },
             { "$ref": "schema:Thing" }
           ]
@@ -28,6 +29,7 @@
             "anyOf": [
               { "type": "string", "format": "uri" },
               { "type": "string" },
+              { "$ref": "schema:CategoryCode" },
               { "$ref": "schema:PhysicalActivityCategory" },
               { "$ref": "schema:Thing" }
             ]

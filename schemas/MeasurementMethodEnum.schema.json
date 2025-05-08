@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:MeasurementMethodEnum",
+  "title": "MeasurementMethodEnum",
+  "description": "Enumeration(s) for use with [[measurementMethod]].",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "An example [[MeasurementMethodEnum]] (to remove when real enums are added).",
+      "const": "ExampleMeasurementMethodEnum"
+    }
+  ]
+}

@@ -84,7 +84,7 @@
       "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
     },
     "operatingSystem": {
-      "description": "Operating systems supported (Windows 7, OSX 10.6, Android 1.6).",
+      "description": "Operating systems supported (Windows 7, OS X 10.6, Android 1.6).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
@@ -106,7 +106,7 @@
       "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
     },
     "requirements": {
-      "description": "Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime).",
+      "description": "Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (examples: DirectX, Java or .NET runtime).",
       "oneOf": [
         {
           "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
@@ -157,7 +157,7 @@
       ]
     },
     "softwareRequirements": {
-      "description": "Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (Examples: DirectX, Java or .NET runtime).",
+      "description": "Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (examples: DirectX, Java or .NET runtime).",
       "oneOf": [
         {
           "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]

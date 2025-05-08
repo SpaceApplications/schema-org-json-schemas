@@ -16,7 +16,7 @@
       "$ref": "schema:MedicalCondition"
     },
     "sponsor": {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": [
         {
           "anyOf": [

@@ -16,7 +16,7 @@
       "type": "boolean"
     },
     "freeShippingThreshold": {
-      "description": "A monetary value above which (or equal to) the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]].",
+      "description": "A monetary value above (or at) which the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]].",
       "oneOf": [
         {
           "anyOf": [
@@ -39,23 +39,33 @@
       "description": "This can be marked 'true' to indicate that some published [[DeliveryTimeSettings]] or [[ShippingRateSettings]] are intended to apply to all [[OfferShippingDetails]] published by the same merchant, when referenced by a [[shippingSettingsLink]] in those settings. It is not meaningful to use a 'true' value for this property alongside a transitTimeLabel (for [[DeliveryTimeSettings]]) or shippingLabel (for [[ShippingRateSettings]]), since this property is for use with unlabelled settings.",
       "type": "boolean"
     },
+    "orderPercentage": {
+      "description": "Fraction of the value of the order that is charged as shipping cost.",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "array", "items": { "type": "number" } }
+      ]
+    },
     "shippingDestination": {
-      "description": "indicates (possibly multiple) shipping destinations. These can be defined in several ways e.g. postalCode ranges.",
+      "description": "indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.",
       "oneOf": [
         { "$ref": "schema:DefinedRegion" },
         { "type": "array", "items": { "$ref": "schema:DefinedRegion" } }
       ]
     },
-    "shippingLabel": {
-      "description": "Label to match an [[OfferShippingDetails]] with a [[ShippingRateSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).",
-      "oneOf": [
-        { "type": "string" },
-        { "type": "array", "items": { "type": "string" } }
-      ]
-    },
     "shippingRate": {
       "description": "The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.",
-      "$ref": "schema:MonetaryAmount"
+      "anyOf": [
+        { "$ref": "schema:MonetaryAmount" },
+        { "$ref": "schema:ShippingRateSettings" }
+      ]
+    },
+    "weightPercentage": {
+      "description": "Fraction of the weight that is used to compute the shipping price.",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "array", "items": { "type": "number" } }
+      ]
     }
   }
 }

@@ -16,7 +16,7 @@
       "anyOf": [{ "type": "integer" }, { "type": "string" }]
     },
     "artMedium": {
-      "description": "The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)",
+      "description": "The material used. (E.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.)",
       "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
     },
     "artform": {
@@ -89,6 +89,13 @@
             ]
           }
         }
+      ]
+    },
+    "weight": {
+      "description": "The weight of the product or person.",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Mass" },
+        { "$ref": "schema:QuantitativeValue" }
       ]
     },
     "width": {

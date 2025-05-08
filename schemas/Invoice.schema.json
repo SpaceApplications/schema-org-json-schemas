@@ -47,6 +47,7 @@
           "anyOf": [
             { "type": "string", "format": "uri" },
             { "type": "string" },
+            { "$ref": "schema:CategoryCode" },
             { "$ref": "schema:PhysicalActivityCategory" },
             { "$ref": "schema:Thing" }
           ]
@@ -57,6 +58,7 @@
             "anyOf": [
               { "type": "string", "format": "uri" },
               { "type": "string" },
+              { "$ref": "schema:CategoryCode" },
               { "$ref": "schema:PhysicalActivityCategory" },
               { "$ref": "schema:Thing" }
             ]
@@ -93,7 +95,7 @@
     },
     "paymentMethod": {
       "description": "The name of the credit card or other method of payment for the order.",
-      "$ref": "schema:PaymentMethod"
+      "anyOf": [{ "type": "string" }, { "$ref": "schema:PaymentMethod" }]
     },
     "paymentMethodId": {
       "description": "An identifier for the method of payment used (e.g. the last 4 digits of the credit card).",

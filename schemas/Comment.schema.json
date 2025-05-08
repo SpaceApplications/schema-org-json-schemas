@@ -16,8 +16,15 @@
       "type": "integer"
     },
     "parentItem": {
-      "description": "The parent of a question, answer or item in general.",
-      "$ref": "schema:Comment"
+      "description": "The parent of a question, answer or item in general. Typically used for Q/A discussion threads e.g. a chain of comments with the first comment being an [[Article]] or other [[CreativeWork]]. See also [[comment]] which points from something to a comment about it.",
+      "anyOf": [{ "$ref": "schema:Comment" }, { "$ref": "schema:CreativeWork" }]
+    },
+    "sharedContent": {
+      "description": "A CreativeWork such as an image, video, or audio clip shared as part of this posting.",
+      "oneOf": [
+        { "$ref": "schema:CreativeWork" },
+        { "type": "array", "items": { "$ref": "schema:CreativeWork" } }
+      ]
     },
     "upvoteCount": {
       "description": "The number of upvotes this question, answer or comment has received from the community.",

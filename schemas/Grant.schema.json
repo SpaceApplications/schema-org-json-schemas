@@ -12,14 +12,57 @@
   ],
   "properties": {
     "fundedItem": {
-      "description": "Indicates an item funded or sponsored through a [[Grant]].",
+      "description": "Indicates something directly or indirectly funded or sponsored through a [[Grant]]. See also [[ownershipFundingInfo]].",
       "oneOf": [
-        { "$ref": "schema:Thing" },
-        { "type": "array", "items": { "$ref": "schema:Thing" } }
+        {
+          "anyOf": [
+            { "$ref": "schema:BioChemEntity" },
+            { "$ref": "schema:CreativeWork" },
+            { "$ref": "schema:Event" },
+            { "$ref": "schema:MedicalEntity" },
+            { "$ref": "schema:Organization" },
+            { "$ref": "schema:Person" },
+            { "$ref": "schema:Product" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:BioChemEntity" },
+              { "$ref": "schema:CreativeWork" },
+              { "$ref": "schema:Event" },
+              { "$ref": "schema:MedicalEntity" },
+              { "$ref": "schema:Organization" },
+              { "$ref": "schema:Person" },
+              { "$ref": "schema:Product" }
+            ]
+          }
+        }
+      ]
+    },
+    "funder": {
+      "description": "A person or organization that supports (sponsors) something through some kind of financial contribution.",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "$ref": "schema:Organization" },
+            { "$ref": "schema:Person" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:Organization" },
+              { "$ref": "schema:Person" }
+            ]
+          }
+        }
       ]
     },
     "sponsor": {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": [
         {
           "anyOf": [

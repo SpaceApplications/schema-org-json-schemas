@@ -14,10 +14,20 @@
     "businessDays": {
       "description": "Days of the week when the merchant typically operates, indicated via opening hours markup.",
       "oneOf": [
-        { "$ref": "schema:OpeningHoursSpecification" },
+        {
+          "anyOf": [
+            { "$ref": "schema:DayOfWeek" },
+            { "$ref": "schema:OpeningHoursSpecification" }
+          ]
+        },
         {
           "type": "array",
-          "items": { "$ref": "schema:OpeningHoursSpecification" }
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:DayOfWeek" },
+              { "$ref": "schema:OpeningHoursSpecification" }
+            ]
+          }
         }
       ]
     },
@@ -29,12 +39,18 @@
       ]
     },
     "handlingTime": {
-      "description": "The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as \"d\"), i.e. only counting days when the business normally operates.",
-      "$ref": "schema:QuantitativeValue"
+      "description": "The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup.\n\nIn the context of [[ShippingDeliveryTime]], Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as \"d\"), i.e. only counting days when the business normally operates.\n\nIn the context of [[ShippingService]], use the [[ServicePeriod]] format, that contains the same information in a structured form, with cut-off time, business days and duration.",
+      "anyOf": [
+        { "$ref": "schema:QuantitativeValue" },
+        { "$ref": "schema:ServicePeriod" }
+      ]
     },
     "transitTime": {
-      "description": "The typical delay the order has been sent for delivery and the goods reach the final customer. Typical properties: minValue, maxValue, unitCode (d for DAY).",
-      "$ref": "schema:QuantitativeValue"
+      "description": "The typical delay the order has been sent for delivery and the goods reach the final customer.\n\n  In the context of [[ShippingDeliveryTime]], use the [[QuantitativeValue]]. Typical properties: minValue, maxValue, unitCode (d for DAY).\n\n  In the context of [[ShippingConditions]], use the [[ServicePeriod]]. It has a duration (as a [[QuantitativeValue]]) and also business days and a cut-off time.\n",
+      "anyOf": [
+        { "$ref": "schema:QuantitativeValue" },
+        { "$ref": "schema:ServicePeriod" }
+      ]
     }
   }
 }

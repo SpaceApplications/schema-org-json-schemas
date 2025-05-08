@@ -10,11 +10,11 @@
       "const": "ExchangeRefund"
     },
     {
-      "description": "Specifies that a refund can be done in the full amount the customer paid for the product",
+      "description": "Specifies that a refund can be done in the full amount the customer paid for the product.",
       "const": "FullRefund"
     },
     {
-      "description": "Specifies that the customer receives a store credit as refund when returning a product",
+      "description": "Specifies that the customer receives a store credit as refund when returning a product.",
       "const": "StoreCreditRefund"
     }
   ]

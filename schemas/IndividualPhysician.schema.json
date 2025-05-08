@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:IndividualPhysician",
+  "title": "IndividualPhysician",
+  "description": "An individual medical practitioner. For their official address use [[address]], for affiliations to hospitals use [[hospitalAffiliation]]. \nThe [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hospitals, clinics, pharmacies etc. where this physician practices.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "An individual physician or a physician's office considered as a [[MedicalOrganization]].",
+      "$ref": "schema:Physician"
+    }
+  ],
+  "properties": {
+    "practicesAt": {
+      "description": "A [[MedicalOrganization]] where the [[IndividualPhysician]] practices.",
+      "oneOf": [
+        { "$ref": "schema:MedicalOrganization" },
+        { "type": "array", "items": { "$ref": "schema:MedicalOrganization" } }
+      ]
+    }
+  }
+}

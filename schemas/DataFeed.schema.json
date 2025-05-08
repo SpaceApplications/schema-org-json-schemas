@@ -12,7 +12,7 @@
   ],
   "properties": {
     "dataFeedElement": {
-      "description": "An item within in a data feed. Data feeds may have many elements.",
+      "description": "An item within a data feed. Data feeds may have many elements.",
       "oneOf": [
         {
           "anyOf": [

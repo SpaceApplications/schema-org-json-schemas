@@ -9,7 +9,7 @@
   ],
   "properties": {
     "additionalProperty": {
-      "description": "A property-value pair representing an additional characteristics of the entitity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\\n\\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.\n",
+      "description": "A property-value pair representing an additional characteristic of the entity, e.g. a product feature or another characteristic for which there is no matching property in schema.org.\\n\\nNote: Publishers should be aware that applications designed to use specific schema.org properties (e.g. https://schema.org/width, https://schema.org/color, https://schema.org/gtin13, ...) will typically expect such data to be provided using those properties, rather than using the generic property/value mechanism.\n",
       "oneOf": [
         { "$ref": "schema:PropertyValue" },
         { "type": "array", "items": { "$ref": "schema:PropertyValue" } }
@@ -18,6 +18,23 @@
     "aggregateRating": {
       "description": "The overall rating, based on a collection of reviews or ratings, of the item.",
       "$ref": "schema:AggregateRating"
+    },
+    "asin": {
+      "description": "An Amazon Standard Identification Number (ASIN) is a 10-character alphanumeric unique identifier assigned by Amazon.com and its partners for product identification within the Amazon organization (summary from [Wikipedia](https://en.wikipedia.org/wiki/Amazon_Standard_Identification_Number)'s article).\n\nNote also that this is a definition for how to include ASINs in Schema.org data, and not a definition of ASINs in general - see documentation from Amazon for authoritative details.\nASINs are most commonly encoded as text strings, but the [asin] property supports URL/URI as potential values too.",
+      "oneOf": [
+        {
+          "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string", "format": "uri" },
+              { "type": "string" }
+            ]
+          }
+        }
+      ]
     },
     "audience": {
       "description": "An intended audience, i.e. a group for whom something was created.",
@@ -48,6 +65,7 @@
           "anyOf": [
             { "type": "string", "format": "uri" },
             { "type": "string" },
+            { "$ref": "schema:CategoryCode" },
             { "$ref": "schema:PhysicalActivityCategory" },
             { "$ref": "schema:Thing" }
           ]
@@ -58,6 +76,7 @@
             "anyOf": [
               { "type": "string", "format": "uri" },
               { "type": "string" },
+              { "$ref": "schema:CategoryCode" },
               { "$ref": "schema:PhysicalActivityCategory" },
               { "$ref": "schema:Thing" }
             ]
@@ -66,6 +85,26 @@
       ]
     },
     "color": { "description": "The color of the product.", "type": "string" },
+    "colorSwatch": {
+      "description": "A color swatch image, visualizing the color of a [[Product]]. Should match the textual description specified in the [[color]] property. This can be a URL or a fully described ImageObject.",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "type": "string", "format": "uri" },
+            { "$ref": "schema:ImageObject" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string", "format": "uri" },
+              { "$ref": "schema:ImageObject" }
+            ]
+          }
+        }
+      ]
+    },
     "countryOfAssembly": {
       "description": "The place where the product was assembled.",
       "type": "string"
@@ -85,11 +124,28 @@
         { "$ref": "schema:QuantitativeValue" }
       ]
     },
-    "gtin": {
-      "description": "A Global Trade Item Number ([GTIN](https://www.gs1.org/standards/id-keys/gtin)). GTINs identify trade items, including products and services, using numeric identification codes. The [[gtin]] property generalizes the earlier [[gtin8]], [[gtin12]], [[gtin13]], and [[gtin14]] properties. The GS1 [digital link specifications](https://www.gs1.org/standards/Digital-Link/) express GTINs as URLs. A correct [[gtin]] value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a \"GS1 Digital Link\" URL based on such a string. The numeric component should also have a [valid GS1 check digit](https://www.gs1.org/services/check-digit-calculator) and meet the other rules for valid GTINs. See also [GS1's GTIN Summary](http://www.gs1.org/barcodes/technical/idkeys/gtin) and [Wikipedia](https://en.wikipedia.org/wiki/Global_Trade_Item_Number) for more details. Left-padding of the gtin values is not required or encouraged.\n   ",
+    "funding": {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
       "oneOf": [
-        { "type": "string" },
-        { "type": "array", "items": { "type": "string" } }
+        { "$ref": "schema:Grant" },
+        { "type": "array", "items": { "$ref": "schema:Grant" } }
+      ]
+    },
+    "gtin": {
+      "description": "A Global Trade Item Number ([GTIN](https://www.gs1.org/standards/id-keys/gtin)). GTINs identify trade items, including products and services, using numeric identification codes.\n\nA correct [[gtin]] value should be a valid GTIN, which means that it should be an all-numeric string of either 8, 12, 13 or 14 digits, or a \"GS1 Digital Link\" URL based on such a string. The numeric component should also have a [valid GS1 check digit](https://www.gs1.org/services/check-digit-calculator) and meet the other rules for valid GTINs. See also [GS1's GTIN Summary](http://www.gs1.org/barcodes/technical/idkeys/gtin) and [Wikipedia](https://en.wikipedia.org/wiki/Global_Trade_Item_Number) for more details. Left-padding of the gtin values is not required or encouraged. The [[gtin]] property generalizes the earlier [[gtin8]], [[gtin12]], [[gtin13]], and [[gtin14]] properties.\n\nThe GS1 [digital link specifications](https://www.gs1.org/standards/Digital-Link/) expresses GTINs as URLs (URIs, IRIs, etc.).\nDigital Links should be populated into the [[hasGS1DigitalLink]] attribute.\n\nNote also that this is a definition for how to include GTINs in Schema.org data, and not a definition of GTINs in general - see the GS1 documentation for authoritative details.",
+      "oneOf": [
+        {
+          "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string", "format": "uri" },
+              { "type": "string" }
+            ]
+          }
+        }
       ]
     },
     "gtin12": {
@@ -108,6 +164,23 @@
       "description": "The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN. See [GS1 GTIN Summary](http://www.gs1.org/barcodes/technical/idkeys/gtin) for more details.",
       "type": "string"
     },
+    "hasAdultConsideration": {
+      "description": "Used to tag an item to be intended or suitable for consumption or use by adults only.",
+      "oneOf": [
+        { "$ref": "schema:AdultOrientedEnumeration" },
+        {
+          "type": "array",
+          "items": { "$ref": "schema:AdultOrientedEnumeration" }
+        }
+      ]
+    },
+    "hasCertification": {
+      "description": "Certification information about a product, organization, service, place, or person.",
+      "oneOf": [
+        { "$ref": "schema:Certification" },
+        { "type": "array", "items": { "$ref": "schema:Certification" } }
+      ]
+    },
     "hasEnergyConsumptionDetails": {
       "description": "Defines the energy efficiency Category (also known as \"class\" or \"rating\") for a product according to an international energy efficiency standard.",
       "oneOf": [
@@ -118,8 +191,13 @@
         }
       ]
     },
+    "hasGS1DigitalLink": {
+      "description": "The GS1 digital link associated with the object. This URL should conform to the particular requirements of digital links. The link should only contain the Application Identifiers (AIs) that are relevant for the entity being annotated, for instance a [[Product]] or an [[Organization]], and for the correct granularity. In particular, for products:A Digital Link that contains a serial number (AI 21) should only be present on instances of [[IndividualProduct]]A Digital Link that contains a lot number (AI 10) should be annotated as [[SomeProduct]] if only products from that lot are sold, or [[IndividualProduct]] if there is only a specific product.A Digital Link that contains a global model number (AI 8013)  should be attached to a [[Product]] or a [[ProductModel]]. Other item types should be adapted similarly.",
+      "type": "string",
+      "format": "uri"
+    },
     "hasMeasurement": {
-      "description": "A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings.",
+      "description": "A measurement of an item, For example, the inseam of pants, the wheel size of a bicycle, the gauge of a screw, or the carbon footprint measured for certification by an authority. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings.",
       "oneOf": [
         { "$ref": "schema:QuantitativeValue" },
         { "type": "array", "items": { "$ref": "schema:QuantitativeValue" } }
@@ -159,6 +237,10 @@
         { "$ref": "schema:Product" },
         { "type": "array", "items": { "$ref": "schema:Product" } }
       ]
+    },
+    "isFamilyFriendly": {
+      "description": "Indicates whether this content is family friendly.",
+      "type": "boolean"
     },
     "isRelatedTo": {
       "description": "A pointer to another, somehow related product (or multiple products).",
@@ -221,6 +303,14 @@
         { "type": "array", "items": { "$ref": "schema:OfferItemCondition" } }
       ]
     },
+    "keywords": {
+      "description": "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.",
+      "anyOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "string" },
+        { "$ref": "schema:DefinedTerm" }
+      ]
+    },
     "logo": {
       "description": "An associated logo.",
       "oneOf": [
@@ -267,6 +357,10 @@
         }
       ]
     },
+    "mobileUrl": {
+      "description": "The [[mobileUrl]] property is provided for specific situations in which data consumers need to determine whether one of several provided URLs is a dedicated 'mobile site'.\n\nTo discourage over-use, and reflecting intial usecases, the property is expected only on [[Product]] and [[Offer]], rather than [[Thing]]. The general trend in web technology is towards [responsive design](https://en.wikipedia.org/wiki/Responsive_web_design) in which content can be flexibly adapted to a wide range of browsing environments. Pages and sites referenced with the long-established [[url]] property should ideally also be usable on a wide variety of devices, including mobile phones. In most cases, it would be pointless and counter productive to attempt to update all [[url]] markup to use [[mobileUrl]] for more mobile-oriented pages. The property is intended for the case when items (primarily [[Product]] and [[Offer]]) have extra URLs hosted on an additional \"mobile site\" alongside the main one. It should not be taken as an endorsement of this publication style.\n    ",
+      "type": "string"
+    },
     "model": {
       "description": "The model of the product. Use with the URL of a ProductModel or a textual representation of the model identifier. The URL of the ProductModel can be from an external source. It is recommended to additionally provide strong product identifiers via the gtin8/gtin13/gtin14 and mpn properties.",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:ProductModel" }]
@@ -274,6 +368,30 @@
     "mpn": {
       "description": "The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers.",
       "type": "string"
+    },
+    "negativeNotes": {
+      "description": "Provides negative considerations regarding something, most typically in pro/con lists for reviews (alongside [[positiveNotes]]). For symmetry \n\nIn the case of a [[Review]], the property describes the [[itemReviewed]] from the perspective of the review; in the case of a [[Product]], the product itself is being described. Since product descriptions \ntend to emphasise positive claims, it may be relatively unusual to find [[negativeNotes]] used in this way. Nevertheless for the sake of symmetry, [[negativeNotes]] can be used on [[Product]].\n\nThe property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most negative is at the beginning of the list).",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "schema:ItemList" },
+            { "$ref": "schema:ListItem" },
+            { "$ref": "schema:WebContent" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "$ref": "schema:ItemList" },
+              { "$ref": "schema:ListItem" },
+              { "$ref": "schema:WebContent" }
+            ]
+          }
+        }
+      ]
     },
     "nsn": {
       "description": "Indicates the [NATO stock number](https://en.wikipedia.org/wiki/NATO_Stock_Number) (nsn) of a [[Product]]. ",
@@ -306,6 +424,30 @@
         }
       ]
     },
+    "positiveNotes": {
+      "description": "Provides positive considerations regarding something, for example product highlights or (alongside [[negativeNotes]]) pro/con lists for reviews.\n\nIn the case of a [[Review]], the property describes the [[itemReviewed]] from the perspective of the review; in the case of a [[Product]], the product itself is being described.\n\nThe property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most positive is at the beginning of the list).",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "schema:ItemList" },
+            { "$ref": "schema:ListItem" },
+            { "$ref": "schema:WebContent" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "$ref": "schema:ItemList" },
+              { "$ref": "schema:ListItem" },
+              { "$ref": "schema:WebContent" }
+            ]
+          }
+        }
+      ]
+    },
     "productID": {
       "description": "The product identifier, such as ISBN. For example: ``` meta itemprop=\"productID\" content=\"isbn:123-456-789\" ```.",
       "type": "string"
@@ -316,7 +458,7 @@
       "format": "date"
     },
     "purchaseDate": {
-      "description": "The date the item e.g. vehicle was purchased by the current owner.",
+      "description": "The date the item, e.g. vehicle, was purchased by the current owner.",
       "type": "string",
       "format": "date"
     },
@@ -376,7 +518,10 @@
     },
     "weight": {
       "description": "The weight of the product or person.",
-      "$ref": "schema:QuantitativeValue"
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Mass" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
     },
     "width": {
       "description": "The width of the item.",

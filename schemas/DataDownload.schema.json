@@ -2,27 +2,58 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:DataDownload",
   "title": "DataDownload",
-  "description": "A dataset in downloadable form.",
+  "description": "All or part of a [[Dataset]] in downloadable form. ",
   "type": "object",
   "allOf": [
     {
-      "description": "A media object, such as an image, video, or audio object embedded in a web page or a downloadable dataset i.e. DataDownload. Note that a creative work may have many media objects associated with it on the same web page. For example, a page about a single song (MusicRecording) may have a music video (VideoObject), and a high and low bandwidth audio stream (2 AudioObject's).",
+      "description": "A media object, such as an image, video, audio, or text object embedded in a web page or a downloadable dataset i.e. DataDownload. Note that a creative work may have many media objects associated with it on the same web page. For example, a page about a single song (MusicRecording) may have a music video (VideoObject), and a high and low bandwidth audio stream (2 AudioObject's).",
       "$ref": "schema:MediaObject"
     }
   ],
   "properties": {
-    "measurementTechnique": {
-      "description": "A technique or technology used in a [[Dataset]] (or [[DataDownload]], [[DataCatalog]]),\ncorresponding to the method used for measuring the corresponding variable(s) (described using [[variableMeasured]]). This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but rather as a high level summary for dataset discovery.\n\nFor example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: \"mass spectrometry\" or \"nmr spectroscopy\" or \"colorimetry\" or \"immunofluorescence\".\n\nIf the [[variableMeasured]] is \"depression rating\", the [[measurementTechnique]] could be \"Zung Scale\" or \"HAM-D\" or \"Beck Depression Inventory\".\n\nIf there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]].\n      ",
+    "measurementMethod": {
+      "description": "A subproperty of [[measurementTechnique]] that can be used for specifying specific methods, in particular via [[MeasurementMethodEnum]].",
       "oneOf": [
         {
-          "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
+          "anyOf": [
+            { "type": "string", "format": "uri" },
+            { "type": "string" },
+            { "$ref": "schema:DefinedTerm" },
+            { "$ref": "schema:MeasurementMethodEnum" }
+          ]
         },
         {
           "type": "array",
           "items": {
             "anyOf": [
               { "type": "string", "format": "uri" },
-              { "type": "string" }
+              { "type": "string" },
+              { "$ref": "schema:DefinedTerm" },
+              { "$ref": "schema:MeasurementMethodEnum" }
+            ]
+          }
+        }
+      ]
+    },
+    "measurementTechnique": {
+      "description": "A technique, method or technology used in an [[Observation]], [[StatisticalVariable]] or [[Dataset]] (or [[DataDownload]], [[DataCatalog]]), corresponding to the method used for measuring the corresponding variable(s) (for datasets, described using [[variableMeasured]]; for [[Observation]], a [[StatisticalVariable]]). Often but not necessarily each [[variableMeasured]] will have an explicit representation as (or mapping to) an property such as those defined in Schema.org, or other RDF vocabularies and \"knowledge graphs\". In that case the subproperty of [[variableMeasured]] called [[measuredProperty]] is applicable.\n    \nThe [[measurementTechnique]] property helps when extra clarification is needed about how a [[measuredProperty]] was measured. This is oriented towards scientific and scholarly dataset publication but may have broader applicability; it is not intended as a full representation of measurement, but can often serve as a high level summary for dataset discovery. \n\nFor example, if [[variableMeasured]] is: molecule concentration, [[measurementTechnique]] could be: \"mass spectrometry\" or \"nmr spectroscopy\" or \"colorimetry\" or \"immunofluorescence\". If the [[variableMeasured]] is \"depression rating\", the [[measurementTechnique]] could be \"Zung Scale\" or \"HAM-D\" or \"Beck Depression Inventory\". \n\nIf there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]]. The value can also be from an enumeration, organized as a [[MeasurementMetholdEnumeration]].",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "type": "string", "format": "uri" },
+            { "type": "string" },
+            { "$ref": "schema:DefinedTerm" },
+            { "$ref": "schema:MeasurementMethodEnum" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string", "format": "uri" },
+              { "type": "string" },
+              { "$ref": "schema:DefinedTerm" },
+              { "$ref": "schema:MeasurementMethodEnum" }
             ]
           }
         }

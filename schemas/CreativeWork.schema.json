@@ -40,49 +40,49 @@
       ]
     },
     "accessMode": {
-      "description": "The human sensory perceptual system or cognitive faculty through which a person may process or perceive information. Expected values include: auditory, tactile, textual, visual, colorDependent, chartOnVisual, chemOnVisual, diagramOnVisual, mathOnVisual, musicOnVisual, textOnVisual.\n      ",
+      "description": "The human sensory perceptual system or cognitive faculty through which a person may process or perceive information. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessMode-vocabulary).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
       ]
     },
     "accessModeSufficient": {
-      "description": "A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource. Expected values include:  auditory, tactile, textual, visual.\n      ",
+      "description": "A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessModeSufficient-vocabulary).",
       "oneOf": [
         { "$ref": "schema:ItemList" },
         { "type": "array", "items": { "$ref": "schema:ItemList" } }
       ]
     },
     "accessibilityAPI": {
-      "description": "Indicates that the resource is compatible with the referenced accessibility API ([WebSchemas wiki lists possible values](http://www.w3.org/wiki/WebSchemas/Accessibility)).",
+      "description": "Indicates that the resource is compatible with the referenced accessibility API. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityAPI-vocabulary).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
       ]
     },
     "accessibilityControl": {
-      "description": "Identifies input methods that are sufficient to fully control the described resource ([WebSchemas wiki lists possible values](http://www.w3.org/wiki/WebSchemas/Accessibility)).",
+      "description": "Identifies input methods that are sufficient to fully control the described resource. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityControl-vocabulary).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
       ]
     },
     "accessibilityFeature": {
-      "description": "Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility ([WebSchemas wiki lists possible values](http://www.w3.org/wiki/WebSchemas/Accessibility)).",
+      "description": "Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityFeature-vocabulary).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
       ]
     },
     "accessibilityHazard": {
-      "description": "A characteristic of the described resource that is physiologically dangerous to some users. Related to WCAG 2.0 guideline 2.3 ([WebSchemas wiki lists possible values](http://www.w3.org/wiki/WebSchemas/Accessibility)).",
+      "description": "A characteristic of the described resource that is physiologically dangerous to some users. Related to WCAG 2.0 guideline 2.3. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityHazard-vocabulary).",
       "oneOf": [
         { "type": "string" },
         { "type": "array", "items": { "type": "string" } }
       ]
     },
     "accessibilitySummary": {
-      "description": "A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as \"short descriptions are present but long descriptions will be needed for non-visual users\" or \"short descriptions are present and no long descriptions are needed.\"",
+      "description": "A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as \"short descriptions are present but long descriptions will be needed for non-visual users\" or \"short descriptions are present and no long descriptions are needed\".",
       "type": "string"
     },
     "accountablePerson": {
@@ -234,7 +234,7 @@
       "$ref": "schema:Place"
     },
     "contentRating": {
-      "description": "Official rating of a piece of content—for example,'MPAA PG-13'.",
+      "description": "Official rating of a piece of content—for example, 'MPAA PG-13'.",
       "oneOf": [
         { "anyOf": [{ "type": "string" }, { "$ref": "schema:Rating" }] },
         {
@@ -341,10 +341,20 @@
       ]
     },
     "datePublished": {
-      "description": "Date of first broadcast/publication.",
+      "description": "Date of first publication or broadcast. For example the date a [[CreativeWork]] was broadcast or a [[Certification]] was issued.",
       "anyOf": [
         { "type": "string", "format": "date" },
         { "type": "string", "format": "date-time" }
+      ]
+    },
+    "digitalSourceType": {
+      "description": "Indicates an IPTCDigitalSourceEnumeration code indicating the nature of the digital source(s) for some [[CreativeWork]].",
+      "oneOf": [
+        { "$ref": "schema:IPTCDigitalSourceEnumeration" },
+        {
+          "type": "array",
+          "items": { "$ref": "schema:IPTCDigitalSourceEnumeration" }
+        }
       ]
     },
     "discussionUrl": {
@@ -355,7 +365,7 @@
       ]
     },
     "editEIDR": {
-      "description": "An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing a specific edit / edition for a work of film or television.\n\nFor example, the motion picture known as \"Ghostbusters\" whose [[titleEIDR]] is \"10.5240/7EC7-228A-510A-053E-CBB8-J\", has several edits e.g. \"10.5240/1F2A-E1C5-680A-14C6-E76B-I\" and \"10.5240/8A35-3BEE-6497-5D12-9E4F-3\".\n\nSince schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.\n",
+      "description": "An [EIDR](https://eidr.org/) (Entertainment Identifier Registry) [[identifier]] representing a specific edit / edition for a work of film or television.\n\nFor example, the motion picture known as \"Ghostbusters\" whose [[titleEIDR]] is \"10.5240/7EC7-228A-510A-053E-CBB8-J\" has several edits, e.g. \"10.5240/1F2A-E1C5-680A-14C6-E76B-I\" and \"10.5240/8A35-3BEE-6497-5D12-9E4F-3\".\n\nSince schema.org types like [[Movie]] and [[TVEpisode]] can be used for both works and their multiple expressions, it is possible to use [[titleEIDR]] alone (for a general description), or alongside [[editEIDR]] for a more edit-specific description.\n",
       "oneOf": [
         {
           "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
@@ -402,7 +412,7 @@
       ]
     },
     "encodingFormat": {
-      "description": "Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)) e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.).\n\nIn cases where a [[CreativeWork]] has several media type representations, [[encoding]] can be used to indicate each [[MediaObject]] alongside particular [[encodingFormat]] information.\n\nUnregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.",
+      "description": "Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)), e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.\n\nIn cases where a [[CreativeWork]] has several media type representations, [[encoding]] can be used to indicate each [[MediaObject]] alongside particular [[encodingFormat]] information.\n\nUnregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.",
       "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
     },
     "encodings": {
@@ -420,12 +430,14 @@
       ]
     },
     "expires": {
-      "description": "Date the content expires and is no longer useful or available. For example a [[VideoObject]] or [[NewsArticle]] whose availability or relevance is time-limited, or a [[ClaimReview]] fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date.",
-      "type": "string",
-      "format": "date"
+      "description": "Date the content expires and is no longer useful or available. For example a [[VideoObject]] or [[NewsArticle]] whose availability or relevance is time-limited, a [[ClaimReview]] fact check whose publisher wants to indicate that it may no longer be relevant (or helpful to highlight) after some date, or a [[Certification]] the validity has expired.",
+      "anyOf": [
+        { "type": "string", "format": "date" },
+        { "type": "string", "format": "date-time" }
+      ]
     },
     "fileFormat": {
-      "description": "Media type, typically MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml)) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry.",
+      "description": "Media type, typically MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml)) of the content, e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, 'encoding' can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry.",
       "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
     },
     "funder": {
@@ -446,6 +458,13 @@
             ]
           }
         }
+      ]
+    },
+    "funding": {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": [
+        { "$ref": "schema:Grant" },
+        { "type": "array", "items": { "$ref": "schema:Grant" } }
       ]
     },
     "genre": {
@@ -484,7 +503,7 @@
       "type": "boolean"
     },
     "isBasedOn": {
-      "description": "A resource from which this work is derived or from which it is a modification or adaption.",
+      "description": "A resource from which this work is derived or from which it is a modification or adaptation.",
       "oneOf": [
         {
           "anyOf": [
@@ -539,7 +558,7 @@
       ]
     },
     "keywords": {
-      "description": "Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas.",
+      "description": "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.",
       "anyOf": [
         { "type": "string", "format": "uri" },
         { "type": "string" },
@@ -659,7 +678,7 @@
       "anyOf": [{ "type": "integer" }, { "type": "string" }]
     },
     "producer": {
-      "description": "The person or organization who produced the work (e.g. music album, movie, tv/radio series etc.).",
+      "description": "The person or organization who produced the work (e.g. music album, movie, TV/radio series etc.).",
       "anyOf": [{ "$ref": "schema:Organization" }, { "$ref": "schema:Person" }]
     },
     "provider": {
@@ -674,7 +693,7 @@
       ]
     },
     "publisher": {
-      "description": "The publisher of the creative work.",
+      "description": "The publisher of the article in question.",
       "anyOf": [{ "$ref": "schema:Organization" }, { "$ref": "schema:Person" }]
     },
     "publisherImprint": {
@@ -682,7 +701,7 @@
       "$ref": "schema:Organization"
     },
     "publishingPrinciples": {
-      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].\n\nWhile such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.\n",
+      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual, e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].\n\nWhile such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.\n",
       "anyOf": [
         { "type": "string", "format": "uri" },
         { "$ref": "schema:CreativeWork" }
@@ -728,7 +747,7 @@
       ]
     },
     "sdDatePublished": {
-      "description": "Indicates the date on which the current structured data was generated / published. Typically used alongside [[sdPublisher]]",
+      "description": "Indicates the date on which the current structured data was generated / published. Typically used alongside [[sdPublisher]].",
       "oneOf": [
         { "type": "string", "format": "date" },
         { "type": "array", "items": { "type": "string", "format": "date" } }
@@ -811,7 +830,7 @@
       "$ref": "schema:Place"
     },
     "sponsor": {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": [
         {
           "anyOf": [
@@ -842,7 +861,7 @@
       ]
     },
     "temporalCoverage": {
-      "description": "The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In\n      the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written \"2011/2012\"). Other forms of content e.g. ScholarlyArticle, Book, TVSeries or TVEpisode may indicate their temporalCoverage in broader terms - textually or via well-known URL.\n      Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via \"1939/1945\".\n\nOpen-ended date ranges can be written with \"..\" in place of the end date. For example, \"2015-11/..\" indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated.",
+      "description": "The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in [ISO 8601 time interval format](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals). In\n      the case of a Dataset it will typically indicate the relevant time period in a precise notation (e.g. for a 2011 census dataset, the year 2011 would be written \"2011/2012\"). Other forms of content, e.g. ScholarlyArticle, Book, TVSeries or TVEpisode, may indicate their temporalCoverage in broader terms - textually or via well-known URL.\n      Written works such as books may sometimes have precise temporal coverage too, e.g. a work set in 1939 - 1945 can be indicated in ISO 8601 interval format format via \"1939/1945\".\n\nOpen-ended date ranges can be written with \"..\" in place of the end date. For example, \"2015-11/..\" indicates a range beginning in November 2015 and with no specified final date. This is tentative and might be updated in future when ISO 8601 is officially updated.",
       "anyOf": [
         { "type": "string", "format": "date-time" },
         { "type": "string", "format": "uri" },
@@ -853,6 +872,10 @@
       "description": "The textual content of this CreativeWork.",
       "type": "string"
     },
+    "thumbnail": {
+      "description": "Thumbnail image for an image or video.",
+      "$ref": "schema:ImageObject"
+    },
     "thumbnailUrl": {
       "description": "A thumbnail image relevant to the Thing.",
       "oneOf": [
@@ -861,12 +884,12 @@
       ]
     },
     "timeRequired": {
-      "description": "Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience, e.g. 'PT30M', 'PT1H25M'.",
+      "description": "Approximate or typical time it usually takes to work with or through the content of this work for the typical or target audience.",
       "type": "string",
       "$comment": "https://schema.org/Duration"
     },
     "translationOfWork": {
-      "description": "The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of Species”",
+      "description": "The work that this work has been translated from. E.g. 物种起源 is a translationOf “On the Origin of Species”.",
       "$ref": "schema:CreativeWork"
     },
     "translator": {
@@ -894,7 +917,7 @@
       "type": "string"
     },
     "usageInfo": {
-      "description": "The schema.org [[usageInfo]] property indicates further information about a [[CreativeWork]]. This property is applicable both to works that are freely available and to those that require payment or other transactions. It can reference additional information e.g. community expectations on preferred linking and citation conventions, as well as purchasing details. For something that can be commercially licensed, usageInfo can provide detailed, resource-specific information about licensing options.\n\nThis property can be used alongside the license property which indicates license(s) applicable to some piece of content. The usageInfo property can provide information about other licensing options, e.g. acquiring commercial usage rights for an image that is also available under non-commercial creative commons licenses.",
+      "description": "The schema.org [[usageInfo]] property indicates further information about a [[CreativeWork]]. This property is applicable both to works that are freely available and to those that require payment or other transactions. It can reference additional information, e.g. community expectations on preferred linking and citation conventions, as well as purchasing details. For something that can be commercially licensed, usageInfo can provide detailed, resource-specific information about licensing options.\n\nThis property can be used alongside the license property which indicates license(s) applicable to some piece of content. The usageInfo property can provide information about other licensing options, e.g. acquiring commercial usage rights for an image that is also available under non-commercial creative commons licenses.",
       "anyOf": [
         { "type": "string", "format": "uri" },
         { "$ref": "schema:CreativeWork" }
@@ -921,15 +944,19 @@
         }
       ]
     },
+    "wordCount": {
+      "description": "The number of words in the text of the CreativeWork such as an Article, Book, etc.",
+      "type": "integer"
+    },
     "workExample": {
-      "description": "Example/instance/realization/derivation of the concept of this creative work. eg. The paperback edition, first edition, or eBook.",
+      "description": "Example/instance/realization/derivation of the concept of this creative work. E.g. the paperback edition, first edition, or e-book.",
       "oneOf": [
         { "$ref": "schema:CreativeWork" },
         { "type": "array", "items": { "$ref": "schema:CreativeWork" } }
       ]
     },
     "workTranslation": {
-      "description": "A work that is a translation of the content of this work. e.g. 西遊記 has an English workTranslation “Journey to the West”,a German workTranslation “Monkeys Pilgerfahrt” and a Vietnamese  translation Tây du ký bình khảo.",
+      "description": "A work that is a translation of the content of this work. E.g. 西遊記 has an English workTranslation “Journey to the West”, a German workTranslation “Monkeys Pilgerfahrt” and a Vietnamese  translation Tây du ký bình khảo.",
       "oneOf": [
         { "$ref": "schema:CreativeWork" },
         { "type": "array", "items": { "$ref": "schema:CreativeWork" } }

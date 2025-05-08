@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:EndorseAction",
   "title": "EndorseAction",
-  "description": "An agent approves/certifies/likes/supports/sanction an object.",
+  "description": "An agent approves/certifies/likes/supports/sanctions an object.",
   "type": "object",
   "allOf": [
     {

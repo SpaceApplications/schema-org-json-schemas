@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:PlayGameAction",
+  "title": "PlayGameAction",
+  "description": "The act of playing a video game.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "The act of ingesting information/resources/food.",
+      "$ref": "schema:ConsumeAction"
+    }
+  ],
+  "properties": {
+    "gameAvailabilityType": {
+      "description": "Indicates the availability type of the game content associated with this action, such as whether it is a full version or a demo.",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "type": "string" },
+            { "$ref": "schema:GameAvailabilityEnumeration" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "$ref": "schema:GameAvailabilityEnumeration" }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

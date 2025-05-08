@@ -8,6 +8,14 @@
     { "description": "The most generic type of item.", "$ref": "schema:Thing" }
   ],
   "properties": {
+    "acceptedPaymentMethod": {
+      "description": "The payment method(s) that are accepted in general by an organization, or for some specific demand or offer.",
+      "anyOf": [
+        { "type": "string" },
+        { "$ref": "schema:LoanOrCredit" },
+        { "$ref": "schema:PaymentMethod" }
+      ]
+    },
     "actionableFeedbackPolicy": {
       "description": "For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.",
       "oneOf": [
@@ -31,6 +39,10 @@
     "address": {
       "description": "Physical address of the item.",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:PostalAddress" }]
+    },
+    "agentInteractionStatistic": {
+      "description": "The number of completed interactions for this entity, in a particular role (the 'agent'), in a particular action (indicated in the statistic), and in a particular context (i.e. interactionService).",
+      "$ref": "schema:InteractionCounter"
     },
     "aggregateRating": {
       "description": "The overall rating, based on a collection of reviews or ratings, of the item.",
@@ -217,10 +229,23 @@
     },
     "faxNumber": { "description": "The fax number.", "type": "string" },
     "founder": {
-      "description": "A person who founded this organization.",
+      "description": "A person or organization who founded this organization.",
       "oneOf": [
-        { "$ref": "schema:Person" },
-        { "type": "array", "items": { "$ref": "schema:Person" } }
+        {
+          "anyOf": [
+            { "$ref": "schema:Organization" },
+            { "$ref": "schema:Person" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:Organization" },
+              { "$ref": "schema:Person" }
+            ]
+          }
+        }
       ]
     },
     "founders": {
@@ -259,9 +284,23 @@
         }
       ]
     },
+    "funding": {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": [
+        { "$ref": "schema:Grant" },
+        { "type": "array", "items": { "$ref": "schema:Grant" } }
+      ]
+    },
     "globalLocationNumber": {
       "description": "The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.",
       "type": "string"
+    },
+    "hasCertification": {
+      "description": "Certification information about a product, organization, service, place, or person.",
+      "oneOf": [
+        { "$ref": "schema:Certification" },
+        { "type": "array", "items": { "$ref": "schema:Certification" } }
+      ]
     },
     "hasCredential": {
       "description": "A credential awarded to the Person or Organization.",
@@ -271,6 +310,18 @@
           "type": "array",
           "items": { "$ref": "schema:EducationalOccupationalCredential" }
         }
+      ]
+    },
+    "hasGS1DigitalLink": {
+      "description": "The GS1 digital link associated with the object. This URL should conform to the particular requirements of digital links. The link should only contain the Application Identifiers (AIs) that are relevant for the entity being annotated, for instance a [[Product]] or an [[Organization]], and for the correct granularity. In particular, for products:A Digital Link that contains a serial number (AI 21) should only be present on instances of [[IndividualProduct]]A Digital Link that contains a lot number (AI 10) should be annotated as [[SomeProduct]] if only products from that lot are sold, or [[IndividualProduct]] if there is only a specific product.A Digital Link that contains a global model number (AI 8013)  should be attached to a [[Product]] or a [[ProductModel]]. Other item types should be adapted similarly.",
+      "type": "string",
+      "format": "uri"
+    },
+    "hasMemberProgram": {
+      "description": "MemberProgram offered by an Organization, for example an eCommerce merchant or an airline.",
+      "oneOf": [
+        { "$ref": "schema:MemberProgram" },
+        { "type": "array", "items": { "$ref": "schema:MemberProgram" } }
       ]
     },
     "hasMerchantReturnPolicy": {
@@ -294,6 +345,13 @@
         { "type": "array", "items": { "$ref": "schema:Place" } }
       ]
     },
+    "hasShippingService": {
+      "description": "Specification of a shipping service offered by the organization.",
+      "oneOf": [
+        { "$ref": "schema:ShippingService" },
+        { "type": "array", "items": { "$ref": "schema:ShippingService" } }
+      ]
+    },
     "interactionStatistic": {
       "description": "The number of interactions for the CreativeWork using the WebSite or SoftwareApplication. The most specific child type of InteractionCounter should be used.",
       "$ref": "schema:InteractionCounter"
@@ -301,6 +359,21 @@
     "isicV4": {
       "description": "The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.",
       "type": "string"
+    },
+    "iso6523Code": {
+      "description": "An organization identifier as defined in [ISO 6523(-1)](https://en.wikipedia.org/wiki/ISO/IEC_6523). The identifier should be in the `XXXX:YYYYYY:ZZZ` or `XXXX:YYYYYY`format. Where `XXXX` is a 4 digit _ICD_ (International Code Designator), `YYYYYY` is an _OID_ (Organization Identifier) with all formatting characters (dots, dashes, spaces) removed with a maximal length of 35 characters, and `ZZZ` is an optional OPI (Organization Part Identifier) with a maximum length of 35 characters. The various components (ICD, OID, OPI) are joined with a colon character (ASCII `0x3a`). Note that many existing organization identifiers defined as attributes like [leiCode](https://schema.org/leiCode) (`0199`), [duns](https://schema.org/duns) (`0060`) or [GLN](https://schema.org/globalLocationNumber) (`0088`) can be expressed using ISO-6523. If possible, ISO-6523 codes should be preferred to populating [vatID](https://schema.org/vatID) or [taxID](https://schema.org/taxID), as ISO identifiers are less ambiguous.",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
+    "keywords": {
+      "description": "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.",
+      "anyOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "string" },
+        { "$ref": "schema:DefinedTerm" }
+      ]
     },
     "knowsAbout": {
       "description": "Of a [[Person]], and less typically of an [[Organization]], to indicate a topic that is known about - suggesting possible expertise but not implying it. We do not distinguish skill levels here, or relate this to educational content, events, objectives or [[JobPosting]] descriptions.",
@@ -408,6 +481,7 @@
       "oneOf": [
         {
           "anyOf": [
+            { "$ref": "schema:MemberProgramTier" },
             { "$ref": "schema:Organization" },
             { "$ref": "schema:ProgramMembership" }
           ]
@@ -416,6 +490,7 @@
           "type": "array",
           "items": {
             "anyOf": [
+              { "$ref": "schema:MemberProgramTier" },
               { "$ref": "schema:Organization" },
               { "$ref": "schema:ProgramMembership" }
             ]
@@ -448,14 +523,14 @@
       "type": "string"
     },
     "nonprofitStatus": {
-      "description": "nonprofit Status indicates the legal status of a non-profit organization in its primary place of business.",
+      "description": "nonprofitStatus indicates the legal status of a non-profit organization in its primary place of business.",
       "oneOf": [
         { "$ref": "schema:NonprofitType" },
         { "type": "array", "items": { "$ref": "schema:NonprofitType" } }
       ]
     },
     "numberOfEmployees": {
-      "description": "The number of employees in an organization e.g. business.",
+      "description": "The number of employees in an organization, e.g. business.",
       "$ref": "schema:QuantitativeValue"
     },
     "ownershipFundingInfo": {
@@ -507,7 +582,7 @@
       "$ref": "schema:Organization"
     },
     "publishingPrinciples": {
-      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].\n\nWhile such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.\n",
+      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual, e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].\n\nWhile such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.\n",
       "anyOf": [
         { "type": "string", "format": "uri" },
         { "$ref": "schema:CreativeWork" }
@@ -542,6 +617,18 @@
         { "$ref": "schema:Place" }
       ]
     },
+    "skills": {
+      "description": "A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is either claimed by a person, an organization or desired or required to fulfill a role or to work in an occupation.",
+      "oneOf": [
+        { "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }] },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }]
+          }
+        }
+      ]
+    },
     "slogan": {
       "description": "A slogan or motto associated with the item.",
       "oneOf": [
@@ -550,7 +637,7 @@
       ]
     },
     "sponsor": {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": [
         {
           "anyOf": [

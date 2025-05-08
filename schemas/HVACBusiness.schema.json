@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:HVACBusiness",
   "title": "HVACBusiness",
-  "description": "A business that provide Heating, Ventilation and Air Conditioning services.",
+  "description": "A business that provides Heating, Ventilation and Air Conditioning services.",
   "type": "object",
   "allOf": [
     {

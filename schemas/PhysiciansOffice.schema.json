@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:PhysiciansOffice",
+  "title": "PhysiciansOffice",
+  "description": "A doctor's office or clinic.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "An individual physician or a physician's office considered as a [[MedicalOrganization]].",
+      "$ref": "schema:Physician"
+    }
+  ]
+}

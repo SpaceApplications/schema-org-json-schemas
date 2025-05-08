@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Course",
   "title": "Course",
-  "description": "A description of an educational course which may be offered as distinct instances at which take place at different times or take place at different locations, or be offered through different media or modes of study. An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners.",
+  "description": "A description of an educational course which may be offered as distinct instances which take place at different times or take place at different locations, or be offered through different media or modes of study. An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners.",
   "type": "object",
   "allOf": [
     {
@@ -15,6 +15,18 @@
     }
   ],
   "properties": {
+    "availableLanguage": {
+      "description": "A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]].",
+      "oneOf": [
+        { "anyOf": [{ "type": "string" }, { "$ref": "schema:Language" }] },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:Language" }]
+          }
+        }
+      ]
+    },
     "courseCode": {
       "description": "The identifier for the [[Course]] used by the course [[provider]] (e.g. CS101 or 6.001).",
       "type": "string"
@@ -63,6 +75,18 @@
         }
       ]
     },
+    "financialAidEligible": {
+      "description": "A financial aid type or program which students may use to pay for tuition or fees associated with the program.",
+      "oneOf": [
+        { "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }] },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:DefinedTerm" }]
+          }
+        }
+      ]
+    },
     "hasCourseInstance": {
       "description": "An offering of the course at a specific time and place or through specific media or mode of study or to a specific section of students.",
       "oneOf": [
@@ -95,6 +119,17 @@
           }
         }
       ]
+    },
+    "syllabusSections": {
+      "description": "Indicates (typically several) Syllabus entities that lay out what each section of the overall course will cover.",
+      "oneOf": [
+        { "$ref": "schema:Syllabus" },
+        { "type": "array", "items": { "$ref": "schema:Syllabus" } }
+      ]
+    },
+    "totalHistoricalEnrollment": {
+      "description": "The total number of students that have enrolled in the history of the course.",
+      "type": "integer"
     }
   }
 }

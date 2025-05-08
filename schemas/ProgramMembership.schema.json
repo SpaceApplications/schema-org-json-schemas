@@ -12,7 +12,7 @@
   ],
   "properties": {
     "hostingOrganization": {
-      "description": "The organization (airline, travelers' club, etc.) the membership is made with.",
+      "description": "The Organization (airline, travelers' club, retailer, etc.) the membership is made with or which offers the  MemberProgram.",
       "$ref": "schema:Organization"
     },
     "member": {
@@ -63,11 +63,15 @@
       ]
     },
     "membershipPointsEarned": {
-      "description": "The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (e.g. stars, miles, etc.)",
+      "description": "The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (E.g. stars, miles, etc.)",
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
+    "program": {
+      "description": "The [MemberProgram](https://schema.org/MemberProgram) associated with a [ProgramMembership](https://schema.org/ProgramMembership).",
+      "$ref": "schema:MemberProgram"
+    },
     "programName": {
-      "description": "The program providing the membership.",
+      "description": "The program providing the membership. It is preferable to use [:program](https://schema.org/program) instead.",
       "type": "string"
     }
   }

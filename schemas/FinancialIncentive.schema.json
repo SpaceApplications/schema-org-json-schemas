@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:FinancialIncentive",
+  "title": "FinancialIncentive",
+  "description": "Represents financial incentives for goods/services offered by an organization (or individual).\n\nTypically contains the [[name]] of the incentive, the [[incentivizedItem]], the [[incentiveAmount]], the [[incentiveStatus]], [[incentiveType]], the [[provider]] of the incentive, and [[eligibleWithSupplier]].\n\nOptionally contains criteria on whether the incentive is limited based on [[purchaseType]], [[purchasePriceLimit]], [[incomeLimit]], and the [[qualifiedExpense]].\n    ",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc.",
+      "$ref": "schema:Intangible"
+    }
+  ],
+  "properties": {
+    "areaServed": {
+      "description": "The geographic area where a service or offered item is provided.",
+      "anyOf": [
+        { "type": "string" },
+        { "$ref": "schema:AdministrativeArea" },
+        { "$ref": "schema:GeoShape" },
+        { "$ref": "schema:Place" }
+      ]
+    },
+    "eligibleWithSupplier": {
+      "description": "The supplier of the incentivized item/service for which the incentive is valid for such as a utility company, merchant, or contractor.",
+      "$ref": "schema:Organization"
+    },
+    "incentiveAmount": {
+      "description": "Describes the amount that can be redeemed from this incentive.\n    \n[[QuantitativeValue]]: Use this for incentives based on price (either raw amount or percentage-based). For a raw amount example, \"You can claim $2,500 - $7,500 from the total cost of installation\" would be represented as the following:\n    {\n        \"@type\": \"QuantitativeValue\",\n        “minValue”: 2500,\n        “maxValue”: 7500,\n        \"unitCode\": \"USD\"\n    }\n[[QuantitivateValue]] can also be used for percentage amounts. In such cases, value is used to represent the incentive’s percentage, while maxValue represents a limit (if one exists) to that incentive. The unitCode should be 'P1' and the unitText should be '%', while valueReference should be used for holding the currency type. For example, \"You can claim up to 30% of the total cost of installation, up to a maximum of $7,500\" would be:\n    {\n        \"@type\": \"QuantitativeValue\",\n        \"value\": 30,\n        \"unitCode\": \"P1\",\n        \"unitText\": \"%\",\n        “maxValue”: 7500,\n        “valueReference”: “USD”\n    }\n[[UnitPriceSpecification]]: Use this for incentives that are based on amounts rather than price. For example, a net metering rebate that pays $10/kWh, up to $1,000:\n    {\n        \"@type\": \"UnitPriceSpecification\",\n        \"price\": 10,\n        \"priceCurrency\": \"USD\",\n        \"referenceQuantity\": 1,\n        \"unitCode\": \"DO3\",\n        \"unitText\": \"kw/h\",\n        \"maxPrice\": 1000,\n        \"description\": \"$10 / kwh up to $1000\"\n    }\n[[LoanOrCredit]]: Use for incentives that are loan based. For example, a loan of $4,000 - $50,000 with a repayment term of 10 years, interest free would look like:\n    {\n        \"@type\": \"LoanOrCredit\",\n        \"loanTerm\": {\n                \"@type\":\"QuantitativeValue\",\n                \"value\":\"10\",\n                \"unitCode\": \"ANN\"\n            },\n        \"amount\":[\n            {\n                \"@type\": \"QuantitativeValue\",\n                \"Name\":\"fixed interest rate\",\n                \"value\":\"0\",\n            },\n        ],\n        \"amount\":[\n            {\n                \"@type\": \"MonetaryAmount\",\n                \"Name\":\"min loan amount\",\n                \"value\":\"4000\",\n                \"currency\":\"CAD\"\n            },\n            {\n                \"@type\": \"MonetaryAmount\",\n                \"Name\":\"max loan amount\",\n                \"value\":\"50000\",\n                \"currency\":\"CAD\"\n            }\n        ],\n    }\n\nIn summary: Use [[QuantitativeValue]] for absolute/percentage-based incentives applied on the price of a good/service.\nUse [[UnitPriceSpecification]] for incentives based on a per-unit basis (e.g. net metering).\nUse [[LoanOrCredit]] for loans/credits.\n.",
+      "oneOf": [
+        {
+          "anyOf": [
+            { "$ref": "schema:LoanOrCredit" },
+            { "$ref": "schema:QuantitativeValue" },
+            { "$ref": "schema:UnitPriceSpecification" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:LoanOrCredit" },
+              { "$ref": "schema:QuantitativeValue" },
+              { "$ref": "schema:UnitPriceSpecification" }
+            ]
+          }
+        }
+      ]
+    },
+    "incentiveStatus": {
+      "description": "The status of the incentive (active, on hold, retired, etc.).",
+      "$ref": "schema:IncentiveStatus"
+    },
+    "incentiveType": {
+      "description": "The type of incentive offered (tax credit/rebate, tax deduction, tax waiver, subsidies, etc.).",
+      "$ref": "schema:IncentiveType"
+    },
+    "incentivizedItem": {
+      "description": "The type or specific product(s) and/or service(s) being incentivized.\nDefinedTermSets are used for product and service categories such as the United Nations Standard Products and Services Code:\n    {\n        \"@type\": \"DefinedTerm\",\n        \"inDefinedTermSet\": \"https://www.unspsc.org/\",\n        \"termCode\": \"261315XX\",\n        \"name\": \"Photovoltaic module\"\n    }\n\nFor a specific product or service, use the Product type:\n    {\n        \"@type\": \"Product\",\n        \"name\": \"Kenmore White 17\" Microwave\",\n    }\nFor multiple different incentivized items, use multiple [[DefinedTerm]] or [[Product]].",
+      "anyOf": [{ "$ref": "schema:DefinedTerm" }, { "$ref": "schema:Product" }]
+    },
+    "incomeLimit": {
+      "description": "Optional. Income limit for which the incentive is applicable for.\n    \nIf MonetaryAmount is specified, this should be based on annualized income (e.g. if an incentive is limited to those making <$114,000 annually):\n    {\n        \"@type\": \"MonetaryAmount\",\n        \"maxValue\": 114000,\n        \"currency\": \"USD\",\n    }\n\nUse Text for incentives that are limited based on other criteria, for example if an incentive is only available to recipients making 120% of the median poverty income in their area.",
+      "oneOf": [
+        {
+          "anyOf": [{ "type": "string" }, { "$ref": "schema:MonetaryAmount" }]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [{ "type": "string" }, { "$ref": "schema:MonetaryAmount" }]
+          }
+        }
+      ]
+    },
+    "provider": {
+      "description": "The service provider, service operator, or service performer; the goods producer. Another party (a seller) may offer those services or goods on behalf of the provider. A provider may also serve as the seller.",
+      "anyOf": [{ "$ref": "schema:Organization" }, { "$ref": "schema:Person" }]
+    },
+    "publisher": {
+      "description": "The publisher of the article in question.",
+      "anyOf": [{ "$ref": "schema:Organization" }, { "$ref": "schema:Person" }]
+    },
+    "purchasePriceLimit": {
+      "description": "Optional. The maximum price the item can have and still qualify for this offer.",
+      "oneOf": [
+        { "$ref": "schema:MonetaryAmount" },
+        { "type": "array", "items": { "$ref": "schema:MonetaryAmount" } }
+      ]
+    },
+    "purchaseType": {
+      "description": "Optional. The type of purchase the consumer must make in order to qualify for this incentive.",
+      "oneOf": [
+        { "$ref": "schema:PurchaseType" },
+        { "type": "array", "items": { "$ref": "schema:PurchaseType" } }
+      ]
+    },
+    "qualifiedExpense": {
+      "description": "Optional. The types of expenses that are covered by the incentive. For example some incentives are only for the goods (tangible items) but the services (labor) are excluded.",
+      "oneOf": [
+        { "$ref": "schema:IncentiveQualifiedExpenseType" },
+        {
+          "type": "array",
+          "items": { "$ref": "schema:IncentiveQualifiedExpenseType" }
+        }
+      ]
+    },
+    "validFrom": {
+      "description": "The date when the item becomes valid.",
+      "anyOf": [
+        { "type": "string", "format": "date" },
+        { "type": "string", "format": "date-time" }
+      ]
+    },
+    "validThrough": {
+      "description": "The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours.",
+      "anyOf": [
+        { "type": "string", "format": "date" },
+        { "type": "string", "format": "date-time" }
+      ]
+    }
+  }
+}

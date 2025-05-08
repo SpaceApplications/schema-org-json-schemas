@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:HealthInsurancePlan",
   "title": "HealthInsurancePlan",
-  "description": "A US-style health insurance plan, including PPOs, EPOs, and HMOs. ",
+  "description": "A US-style health insurance plan, including PPOs, EPOs, and HMOs.",
   "type": "object",
   "allOf": [
     {
@@ -58,7 +58,7 @@
       ]
     },
     "usesHealthPlanIdStandard": {
-      "description": "The standard for interpreting thePlan ID. The preferred is \"HIOS\". See the Centers for Medicare & Medicaid Services for more details.",
+      "description": "The standard for interpreting the Plan ID. The preferred is \"HIOS\". See the Centers for Medicare & Medicaid Services for more details.",
       "anyOf": [{ "type": "string", "format": "uri" }, { "type": "string" }]
     }
   }

@@ -10,9 +10,11 @@
   ],
   "properties": {
     "duration": {
-      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).",
-      "type": "string",
-      "$comment": "https://schema.org/Duration"
+      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Duration" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
     },
     "readBy": {
       "description": "A person who reads (performs) the audiobook.",

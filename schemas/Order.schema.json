@@ -59,11 +59,11 @@
       "type": "string"
     },
     "discountCurrency": {
-      "description": "The currency of the discount.\\n\\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217) e.g. \"USD\"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies e.g. \"BTC\"; well known names for [Local Exchange Tradings Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types e.g. \"Ithaca HOUR\".",
+      "description": "The currency of the discount.\\n\\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. \"USD\"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. \"BTC\"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. \"Ithaca HOUR\".",
       "type": "string"
     },
     "isGift": {
-      "description": "Was the offer accepted as a gift for someone other than the buyer.",
+      "description": "Indicates whether the offer was accepted as a gift for someone other than the buyer.",
       "type": "boolean"
     },
     "merchant": {
@@ -129,7 +129,7 @@
     },
     "paymentMethod": {
       "description": "The name of the credit card or other method of payment for the order.",
-      "$ref": "schema:PaymentMethod"
+      "anyOf": [{ "type": "string" }, { "$ref": "schema:PaymentMethod" }]
     },
     "paymentMethodId": {
       "description": "An identifier for the method of payment used (e.g. the last 4 digits of the credit card).",

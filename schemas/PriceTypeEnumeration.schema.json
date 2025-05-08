@@ -10,7 +10,7 @@
       "const": "InvoicePrice"
     },
     {
-      "description": "Represents the list price (the price a product is actually advertised for) of an offered product.",
+      "description": "Represents the list price of an offered product. Typically the same as the [MSRP](https://schema.org/MSRP).",
       "const": "ListPrice"
     },
     {
@@ -22,12 +22,20 @@
       "const": "MinimumAdvertisedPrice"
     },
     {
+      "description": "Represents the regular price of an offered product. This is usually the advertised price before a temporary sale. Once the sale period ends the advertised price will go back to the regular price.",
+      "const": "RegularPrice"
+    },
+    {
       "description": "Represents the suggested retail price (\"SRP\") of an offered product.",
       "const": "SRP"
     },
     {
       "description": "Represents a sale price (usually active for a limited period) of an offered product.",
       "const": "SalePrice"
+    },
+    {
+      "description": "Represents the strikethrough price (the previous advertised price) of an offered product.",
+      "const": "StrikethroughPrice"
     }
   ]
 }

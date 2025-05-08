@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:VacationRental",
+  "title": "VacationRental",
+  "description": "A kind of lodging business that focuses on renting single properties for limited time.",
+  "type": "object",
+  "allOf": [
+    {
+      "description": "A lodging business, such as a motel, hotel, or inn.",
+      "$ref": "schema:LodgingBusiness"
+    }
+  ]
+}

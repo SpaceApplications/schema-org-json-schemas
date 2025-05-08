@@ -10,7 +10,7 @@
       "$ref": "schema:LocalBusiness"
     },
     {
-      "description": "A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include differents business run by health professionals.",
+      "description": "A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include different businesses run by health professionals.",
       "$ref": "schema:MedicalBusiness"
     },
     {

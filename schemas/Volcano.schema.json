@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:Volcano",
   "title": "Volcano",
-  "description": "A volcano, like Fuji san.",
+  "description": "A volcano, like Fujisan.",
   "type": "object",
   "allOf": [
     {

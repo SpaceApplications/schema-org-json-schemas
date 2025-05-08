@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "description": "A house is a building or structure that has the ability to be occupied for habitation by humans or other creatures (Source: Wikipedia, the free encyclopedia, see http://en.wikipedia.org/wiki/House).",
+      "description": "A house is a building or structure that has the ability to be occupied for habitation by humans or other creatures (source: Wikipedia, the free encyclopedia, see http://en.wikipedia.org/wiki/House).",
       "$ref": "schema:House"
     }
   ],
@@ -16,7 +16,7 @@
       "anyOf": [{ "type": "number" }, { "$ref": "schema:QuantitativeValue" }]
     },
     "occupancy": {
-      "description": "The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).\nTypical unit code(s): C62 for person",
+      "description": "The allowed total occupancy for the accommodation in persons (including infants etc). For individual accommodations, this is not necessarily the legal maximum but defines the permitted usage as per the contractual agreement (e.g. a double room used by a single person).\nTypical unit code(s): C62 for person.",
       "$ref": "schema:QuantitativeValue"
     }
   }

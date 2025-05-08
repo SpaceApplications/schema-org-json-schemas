@@ -20,7 +20,7 @@
       "$ref": "schema:DrugCostCategory"
     },
     "costCurrency": {
-      "description": "The currency (in 3-letter of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. ",
+      "description": "The currency (in 3-letter) of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. ",
       "type": "string"
     },
     "costOrigin": {

@@ -26,6 +26,10 @@
       "const": "LimitedAvailability"
     },
     {
+      "description": "Indicates that the item is made to order (custom made).",
+      "const": "MadeToOrder"
+    },
+    {
       "description": "Indicates that the item is available only online.",
       "const": "OnlineOnly"
     },
@@ -40,6 +44,10 @@
     {
       "description": "Indicates that the item is available for ordering and delivery before general availability.",
       "const": "PreSale"
+    },
+    {
+      "description": "Indicates that the item is reserved and therefore not available.",
+      "const": "Reserved"
     },
     {
       "description": "Indicates that the item has sold out.",

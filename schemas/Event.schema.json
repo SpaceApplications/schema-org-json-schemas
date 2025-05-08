@@ -13,10 +13,23 @@
       "$ref": "schema:Thing"
     },
     "actor": {
-      "description": "An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
+      "description": "An actor (individual or a group), e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
       "oneOf": [
-        { "$ref": "schema:Person" },
-        { "type": "array", "items": { "$ref": "schema:Person" } }
+        {
+          "anyOf": [
+            { "$ref": "schema:PerformingGroup" },
+            { "$ref": "schema:Person" }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "schema:PerformingGroup" },
+              { "$ref": "schema:Person" }
+            ]
+          }
+        }
       ]
     },
     "aggregateRating": {
@@ -92,7 +105,7 @@
       ]
     },
     "director": {
-      "description": "A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
+      "description": "A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
       "$ref": "schema:Person"
     },
     "doorTime": {
@@ -103,9 +116,11 @@
       ]
     },
     "duration": {
-      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).",
-      "type": "string",
-      "$comment": "https://schema.org/Duration"
+      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).",
+      "anyOf": [
+        { "type": "string", "$comment": "https://schema.org/Duration" },
+        { "$ref": "schema:QuantitativeValue" }
+      ]
     },
     "endDate": {
       "description": "The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).",
@@ -152,6 +167,13 @@
         }
       ]
     },
+    "funding": {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": [
+        { "$ref": "schema:Grant" },
+        { "type": "array", "items": { "$ref": "schema:Grant" } }
+      ]
+    },
     "inLanguage": {
       "description": "The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].",
       "anyOf": [{ "type": "string" }, { "$ref": "schema:Language" }]
@@ -159,6 +181,14 @@
     "isAccessibleForFree": {
       "description": "A flag to signal that the item, event, or place is accessible for free.",
       "type": "boolean"
+    },
+    "keywords": {
+      "description": "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.",
+      "anyOf": [
+        { "type": "string", "format": "uri" },
+        { "type": "string" },
+        { "$ref": "schema:DefinedTerm" }
+      ]
     },
     "location": {
       "description": "The location of, for example, where an event is happening, where an organization is located, or where an action takes place.",
@@ -178,7 +208,7 @@
       "type": "integer"
     },
     "maximumVirtualAttendeeCapacity": {
-      "description": "The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). ",
+      "description": "The maximum virtual attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). ",
       "type": "integer"
     },
     "offers": {
@@ -260,7 +290,7 @@
       ]
     },
     "sponsor": {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": [
         {
           "anyOf": [

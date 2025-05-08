@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema:PurchaseType",
+  "title": "PurchaseType",
+  "description": "Enumerates a purchase type for an item.",
+  "type": "string",
+  "oneOf": [
+    {
+      "description": "This is a lease of an item.",
+      "const": "PurchaseTypeLease"
+    },
+    {
+      "description": "This is a purchase of a new item.",
+      "const": "PurchaseTypeNewPurchase"
+    },
+    {
+      "description": "This is a trade-in for an item.",
+      "const": "PurchaseTypeTradeIn"
+    },
+    {
+      "description": "This is a purchase of a used item.",
+      "const": "PurchaseTypeUsedPurchase"
+    }
+  ]
+}

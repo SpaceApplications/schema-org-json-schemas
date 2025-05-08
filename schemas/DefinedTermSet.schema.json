@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "schema:DefinedTermSet",
   "title": "DefinedTermSet",
-  "description": "A set of defined terms for example a set of categories or a classification scheme, a glossary, dictionary or enumeration.",
+  "description": "A set of defined terms, for example a set of categories or a classification scheme, a glossary, dictionary or enumeration.",
   "type": "object",
   "allOf": [
     {
