@@ -17,14 +17,28 @@ Object {
       "description": "The subject matter of the content.",
     },
     "actor": Object {
-      "description": "An actor, e.g. in tv, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
+      "description": "An actor (individual or a group), e.g. in TV, radio, movie, video games etc., or in an event. Actors can be associated with individual items or with a series, episode, clip.",
       "oneOf": Array [
         Object {
-          "$ref": "schema:Person",
+          "anyOf": Array [
+            Object {
+              "$ref": "schema:PerformingGroup",
+            },
+            Object {
+              "$ref": "schema:Person",
+            },
+          ],
         },
         Object {
           "items": Object {
-            "$ref": "schema:Person",
+            "anyOf": Array [
+              Object {
+                "$ref": "schema:PerformingGroup",
+              },
+              Object {
+                "$ref": "schema:Person",
+              },
+            ],
           },
           "type": "array",
         },
@@ -135,7 +149,7 @@ Object {
     },
     "director": Object {
       "$ref": "schema:Person",
-      "description": "A director of e.g. tv, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
+      "description": "A director of e.g. TV, radio, movie, video gaming etc. content, or of an event. Directors can be associated with individual items or with a series, episode, clip.",
     },
     "doorTime": Object {
       "anyOf": Array [
@@ -151,9 +165,16 @@ Object {
       "description": "The time admission will commence.",
     },
     "duration": Object {
-      "$comment": "https://schema.org/Duration",
-      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).",
-      "type": "string",
+      "anyOf": Array [
+        Object {
+          "$comment": "https://schema.org/Duration",
+          "type": "string",
+        },
+        Object {
+          "$ref": "schema:QuantitativeValue",
+        },
+      ],
+      "description": "The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).",
     },
     "endDate": Object {
       "anyOf": Array [
@@ -233,6 +254,20 @@ Object {
         },
       ],
     },
+    "funding": Object {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": Array [
+        Object {
+          "$ref": "schema:Grant",
+        },
+        Object {
+          "items": Object {
+            "$ref": "schema:Grant",
+          },
+          "type": "array",
+        },
+      ],
+    },
     "inLanguage": Object {
       "anyOf": Array [
         Object {
@@ -247,6 +282,21 @@ Object {
     "isAccessibleForFree": Object {
       "description": "A flag to signal that the item, event, or place is accessible for free.",
       "type": "boolean",
+    },
+    "keywords": Object {
+      "anyOf": Array [
+        Object {
+          "format": "uri",
+          "type": "string",
+        },
+        Object {
+          "type": "string",
+        },
+        Object {
+          "$ref": "schema:DefinedTerm",
+        },
+      ],
+      "description": "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.",
     },
     "location": Object {
       "anyOf": Array [
@@ -274,7 +324,7 @@ Object {
       "type": "integer",
     },
     "maximumVirtualAttendeeCapacity": Object {
-      "description": "The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). ",
+      "description": "The maximum virtual attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). ",
       "type": "integer",
     },
     "offers": Object {
@@ -412,7 +462,7 @@ Object {
       ],
     },
     "sponsor": Object {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": Array [
         Object {
           "anyOf": Array [
@@ -718,6 +768,10 @@ Object {
         },
       ],
     },
+    "agentInteractionStatistic": Object {
+      "$ref": "schema:InteractionCounter",
+      "description": "The number of completed interactions for this entity, in a particular role (the 'agent'), in a particular action (indicated in the statistic), and in a particular context (i.e. interactionService).",
+    },
     "alumniOf": Object {
       "description": "An organization that the person is an alumni of.",
       "oneOf": Array [
@@ -971,6 +1025,20 @@ Object {
         },
       ],
     },
+    "funding": Object {
+      "description": "A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].",
+      "oneOf": Array [
+        Object {
+          "$ref": "schema:Grant",
+        },
+        Object {
+          "items": Object {
+            "$ref": "schema:Grant",
+          },
+          "type": "array",
+        },
+      ],
+    },
     "gender": Object {
       "anyOf": Array [
         Object {
@@ -999,6 +1067,20 @@ Object {
     "globalLocationNumber": Object {
       "description": "The [Global Location Number](http://www.gs1.org/gln) (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.",
       "type": "string",
+    },
+    "hasCertification": Object {
+      "description": "Certification information about a product, organization, service, place, or person.",
+      "oneOf": Array [
+        Object {
+          "$ref": "schema:Certification",
+        },
+        Object {
+          "items": Object {
+            "$ref": "schema:Certification",
+          },
+          "type": "array",
+        },
+      ],
     },
     "hasCredential": Object {
       "description": "A credential awarded to the Person or Organization.",
@@ -1101,7 +1183,7 @@ Object {
       ],
     },
     "honorificSuffix": Object {
-      "description": "An honorific suffix following a Person's name such as M.D. /PhD/MSCSW.",
+      "description": "An honorific suffix following a Person's name such as M.D./PhD/MSCSW.",
       "oneOf": Array [
         Object {
           "type": "string",
@@ -1221,6 +1303,9 @@ Object {
         Object {
           "anyOf": Array [
             Object {
+              "$ref": "schema:MemberProgramTier",
+            },
+            Object {
               "$ref": "schema:Organization",
             },
             Object {
@@ -1231,6 +1316,9 @@ Object {
         Object {
           "items": Object {
             "anyOf": Array [
+              Object {
+                "$ref": "schema:MemberProgramTier",
+              },
               Object {
                 "$ref": "schema:Organization",
               },
@@ -1270,7 +1358,7 @@ Object {
           "$ref": "schema:PriceSpecification",
         },
       ],
-      "description": "The total financial value of the person as calculated by subtracting assets from liabilities.",
+      "description": "The total financial value of the person as calculated by subtracting the total value of liabilities from the total value of assets.",
     },
     "owns": Object {
       "description": "Products owned by the organization or person.",
@@ -1352,7 +1440,7 @@ Object {
           "$ref": "schema:CreativeWork",
         },
       ],
-      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].
+      "description": "The publishingPrinciples property indicates (typically via [[URL]]) a document describing the editorial principles of an [[Organization]] (or individual, e.g. a [[Person]] writing a blog) that relate to their activities as a publisher, e.g. ethics or diversity policies. When applied to a [[CreativeWork]] (e.g. [[NewsArticle]]) the principles are those of the party primarily responsible for the creation of the [[CreativeWork]].
 
 While such policies are most typically expressed in natural language, sometimes related information (e.g. indicating a [[funder]]) can be expressed using schema.org terminology.
 ",
@@ -1403,8 +1491,36 @@ While such policies are most typically expressed in natural language, sometimes 
         },
       ],
     },
+    "skills": Object {
+      "description": "A statement of knowledge, skill, ability, task or any other assertion expressing a competency that is either claimed by a person, an organization or desired or required to fulfill a role or to work in an occupation.",
+      "oneOf": Array [
+        Object {
+          "anyOf": Array [
+            Object {
+              "type": "string",
+            },
+            Object {
+              "$ref": "schema:DefinedTerm",
+            },
+          ],
+        },
+        Object {
+          "items": Object {
+            "anyOf": Array [
+              Object {
+                "type": "string",
+              },
+              Object {
+                "$ref": "schema:DefinedTerm",
+              },
+            ],
+          },
+          "type": "array",
+        },
+      ],
+    },
     "sponsor": Object {
-      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. e.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
+      "description": "A person or organization that supports a thing through a pledge, promise, or financial contribution. E.g. a sponsor of a Medical Study or a corporate sponsor of an event.",
       "oneOf": Array [
         Object {
           "anyOf": Array [
@@ -1448,7 +1564,15 @@ While such policies are most typically expressed in natural language, sometimes 
       "type": "string",
     },
     "weight": Object {
-      "$ref": "schema:QuantitativeValue",
+      "anyOf": Array [
+        Object {
+          "$comment": "https://schema.org/Mass",
+          "type": "string",
+        },
+        Object {
+          "$ref": "schema:QuantitativeValue",
+        },
+      ],
       "description": "The weight of the product or person.",
     },
     "workLocation": Object {
